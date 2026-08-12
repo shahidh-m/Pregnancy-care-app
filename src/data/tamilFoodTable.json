@@ -1,0 +1,14 @@
+[
+  { "id": "idli", "name": "Idli (2 pcs)", "nameTamil": "இட்லி (2 எண்ணம்)", "calories": 130, "protein": 4.5, "iron": 0.8 },
+  { "id": "dosa", "name": "Plain Dosa (1 pc)", "nameTamil": "தோசை (1 எண்ணம்)", "calories": 165, "protein": 3.8, "iron": 0.9 },
+  { "id": "masala_dosa", "name": "Masala Dosa (1 pc)", "nameTamil": "மசாலா தோசை", "calories": 250, "protein": 5.2, "iron": 1.4 },
+  { "id": "sambar_rice", "name": "Sambar Rice (1 cup)", "nameTamil": "சாம்பார் சாதம் (1 கப்)", "calories": 220, "protein": 6.0, "iron": 1.8 },
+  { "id": "curd_rice", "name": "Curd Rice (1 cup)", "nameTamil": "தயிர் சாதம் (1 கப்)", "calories": 200, "protein": 5.0, "iron": 0.4 },
+  { "id": "rasam_rice", "name": "Rasam Rice (1 cup)", "nameTamil": "ரசம் சாதம் (1 கப்)", "calories": 180, "protein": 3.5, "iron": 1.2 },
+  { "id": "keerai_poriyal", "name": "Keerai Poriyal / Spinach (1 cup)", "nameTamil": "கீரை பொரியல் (1 கப்)", "calories": 90, "protein": 3.2, "iron": 3.6 },
+  { "id": "sundal", "name": "Chana Sundal (1 cup)", "nameTamil": "சுண்டல் (1 கப்)", "calories": 210, "protein": 11.0, "iron": 3.2 },
+  { "id": "pongal", "name": "Ven Pongal (1 cup)", "nameTamil": "வெண் பொங்கல் (1 கப்)", "calories": 280, "protein": 7.0, "iron": 1.5 },
+  { "id": "chapati", "name": "Wheat Chapati (2 pcs)", "nameTamil": "சப்பாத்தி (2 எண்ணம்)", "calories": 180, "protein": 6.0, "iron": 2.2 },
+  { "id": "boiled_egg", "name": "Boiled Egg (1 pc)", "nameTamil": "அவித்த முட்டை (1 எண்ணம்)", "calories": 78, "protein": 6.3, "iron": 1.0 },
+  { "id": "ragi_malt", "name": "Ragi Porridge / Malt (1 cup)", "nameTamil": "கேழ்வரகு கஞ்சி (1 கப்)", "calories": 140, "protein": 3.0, "iron": 2.5 }
+]

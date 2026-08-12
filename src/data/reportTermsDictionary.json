@@ -1,0 +1,94 @@
+{
+  "terms": [
+    {
+      "id": "hemoglobin",
+      "keywords": ["hemoglobin", "hgb", "hb", "haemoglobin"],
+      "unit": "g/dL",
+      "ranges": {
+        "low": 10.5,
+        "high": 14.0
+      },
+      "explanationLow": "Your Hemoglobin is lower than expected for pregnancy. This may indicate anemia and can cause fatigue.",
+      "explanationLowTamil": "உங்கள் ஹீமோகுளோபின் அளவு குறைவாக உள்ளது. இது ரத்த சோகையை குறிக்கலாம்.",
+      "explanationNormal": "Your Hemoglobin level is in a healthy range for your pregnancy stage.",
+      "explanationNormalTamil": "உங்கள் ஹீமோகுளோபின் அளவு ஆரோக்கியமான வரம்பில் உள்ளது.",
+      "explanationHigh": "Your Hemoglobin level is higher than usual. Stay well hydrated.",
+      "explanationHighTamil": "உங்கள் ஹீமோகுளோபின் அளவு அதிகமாக உள்ளது. போதுமான தண்ணீர் குடியுங்கள்.",
+      "signalLow": "concerned",
+      "signalNormal": "healthy",
+      "signalHigh": "concerned"
+    },
+    {
+      "id": "glucose",
+      "keywords": ["glucose", "blood sugar", "fasting sugar", "postprandial", "sugar", "fbs", "ppbs"],
+      "unit": "mg/dL",
+      "ranges": {
+        "low": 70,
+        "high": 140
+      },
+      "explanationLow": "Your blood sugar is on the lower side. Eat small, regular snacks.",
+      "explanationLowTamil": "உங்கள் ரத்த சர்க்கரை குறைவாக உள்ளது. அடிக்கடி சிறிய அளவில் உணவு உண்ணுங்கள்.",
+      "explanationNormal": "Your blood sugar level is normal for your stage of pregnancy.",
+      "explanationNormalTamil": "உங்கள் ரத்த சர்க்கரை அளவு இயல்பாக உள்ளது.",
+      "explanationHigh": "Your blood sugar is elevated. Discuss gestational diabetes screening with your doctor.",
+      "explanationHighTamil": "உங்கள் ரத்த சர்க்கரை அதிகமாக உள்ளது. மருத்துவரிடம் ஆலோசனை பெறுங்கள்.",
+      "signalLow": "concerned",
+      "signalNormal": "healthy",
+      "signalHigh": "concerned"
+    },
+    {
+      "id": "platelets",
+      "keywords": ["platelet", "platelet count", "plt"],
+      "unit": "x10^3/µL",
+      "ranges": {
+        "low": 150,
+        "high": 450
+      },
+      "explanationLow": "Your platelet count is slightly low (gestational thrombocytopenia). Needs routine check.",
+      "explanationLowTamil": "உங்கள் பிளேட்லெட் எண்ணிக்கை குறைவாக உள்ளது. வழக்கமான பரிசோதனை தேவை.",
+      "explanationNormal": "Your platelet count is within the healthy range.",
+      "explanationNormalTamil": "உங்கள் பிளேட்லெட் எண்ணிக்கை ஆரோக்கியமான வரம்பில் உள்ளது.",
+      "explanationHigh": "Your platelet count is high. Your doctor will monitor this.",
+      "explanationHighTamil": "உங்கள் பிளேட்லெட் எண்ணிக்கை அதிகமாக உள்ளது.",
+      "signalLow": "concerned",
+      "signalNormal": "healthy",
+      "signalHigh": "good"
+    },
+    {
+      "id": "tsh",
+      "keywords": ["tsh", "thyroid", "thyroid stimulating hormone"],
+      "unit": "mIU/L",
+      "ranges": {
+        "low": 0.2,
+        "high": 3.0
+      },
+      "explanationLow": "Your TSH is below normal. Thyroid activity will be monitored by your physician.",
+      "explanationLowTamil": "உங்கள் TSH அளவு குறைவாக உள்ளது. மருத்துவர் கண்காணிப்பார்.",
+      "explanationNormal": "Your thyroid (TSH) level is well-balanced for pregnancy.",
+      "explanationNormalTamil": "உங்கள் தைராய்டு (TSH) அளவு சமநிலையாக உள்ளது.",
+      "explanationHigh": "Your TSH is elevated. Your doctor may prescribe thyroid supplement for baby's development.",
+      "explanationHighTamil": "உங்கள் TSH அளவு அதிகமாக உள்ளது. மருத்துவரிடம் ஆலோசனை பெறவும்.",
+      "signalLow": "concerned",
+      "signalNormal": "healthy",
+      "signalHigh": "concerned"
+    },
+    {
+      "id": "urine_protein",
+      "keywords": ["urine protein", "alb", "albumin", "proteinuria"],
+      "unit": "",
+      "ranges": {
+        "low": 0,
+        "high": 0
+      },
+      "explanationLow": "No protein detected in urine — this is healthy.",
+      "explanationLowTamil": "சிறுநீரில் புரதம் இல்லை — இது ஆரோக்கியமானது.",
+      "explanationNormal": "No protein detected in urine — this is healthy.",
+      "explanationNormalTamil": "சிறுநீரில் புரதம் இல்லை — இது ஆரோக்கியமானது.",
+      "explanationHigh": "Trace or positive protein detected in urine. Please check blood pressure with your doctor to rule out preeclampsia.",
+      "explanationHighTamil": "சிறுநீரில் புரதம் கண்டறியப்பட்டுள்ளது. ரத்த அழுத்தத்தை பரிசோதிக்கவும்.",
+      "signalLow": "healthy",
+      "signalNormal": "healthy",
+      "signalHigh": "critical"
+    }
+  ]
+}

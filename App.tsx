@@ -1,20 +1,42 @@
+// Root App Entry Point — Provider composition & Root Navigator
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+
+import './src/i18n'; // Initialize i18n
+import { ThemeProvider, useTheme } from './src/contexts/ThemeContext';
+import { LanguageProvider } from './src/contexts/LanguageContext';
+import { AuthProvider, useAuth } from './src/contexts/AuthContext';
+import { AuthNavigator } from './src/navigation/AuthNavigator';
+import { AppNavigator } from './src/navigation/AppNavigator';
+
+const MainContent: React.FC = () => {
+  const { isDark } = useTheme();
+  const { user, isOnboarded, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
+  return (
+    <>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+      <NavigationContainer>
+        {user && isOnboarded ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </>
+  );
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            <MainContent />
+          </AuthProvider>
+        </LanguageProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
