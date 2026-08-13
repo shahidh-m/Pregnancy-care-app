@@ -91,19 +91,17 @@ export const AppNavigator: React.FC = () => {
   }, []);
 
   const loadContacts = async () => {
-    const list = await getLocalContacts();
+    const list = await getLocalContacts(user?.uid);
     setContactCount(list.length);
   };
 
   const handleSOSTrigger = async () => {
-    const result = await triggerEmergencySOS(pregInfo.trimester);
-
-    // Also trigger companion network alert
-    await triggerCompanionEmergencyAlert(
-      user?.pairingCode || 'PREG-849201',
-      user?.name || 'Anitha (Mom)',
+    const result = await triggerEmergencySOS(
       pregInfo.trimester,
-      result.location
+      [],
+      user?.uid,
+      user?.pairingCode || 'PREG-849201',
+      user?.name || 'Anitha (Mom)'
     );
 
     if (result.success) {

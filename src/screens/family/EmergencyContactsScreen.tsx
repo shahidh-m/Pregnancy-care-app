@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/Card';
 import { Typography, Spacing, BorderRadius } from '../../theme';
 import { getLocalContacts, saveLocalContacts, EmergencyContact, addLocalContact, deleteLocalContact } from '../../services/storage';
+import { syncContactsToFirestore } from '../../services/firestoreSync';
 
 export const EmergencyContactsScreen: React.FC = () => {
   const { colors } = useTheme();
@@ -27,10 +28,10 @@ export const EmergencyContactsScreen: React.FC = () => {
 
   useEffect(() => {
     loadContacts();
-  }, []);
+  }, [user?.uid]);
 
   const loadContacts = async () => {
-    const list = await getLocalContacts();
+    const list = await getLocalContacts(user?.uid);
     setContacts(list);
   };
 
@@ -65,16 +66,16 @@ export const EmergencyContactsScreen: React.FC = () => {
     }
 
     const order = parseInt(priorityOrder, 10) || 1;
+    let updatedContactsList: EmergencyContact[] = [];
 
     if (editingContact) {
       // Update existing
-      const updated = contacts.map(c => 
+      updatedContactsList = contacts.map(c => 
         c.id === editingContact.id 
           ? { ...c, name: name.trim(), phone: phone.trim(), relationship, hospitalName: hospitalName.trim() || undefined, priorityOrder: order }
           : c
       ).sort((a, b) => a.priorityOrder - b.priorityOrder);
-      await saveLocalContacts(updated);
-      setContacts(updated);
+      await saveLocalContacts(updatedContactsList, user?.uid);
     } else {
       // Add new
       const newContact = await addLocalContact({
@@ -83,8 +84,15 @@ export const EmergencyContactsScreen: React.FC = () => {
         relationship,
         hospitalName: hospitalName.trim() || undefined,
         priorityOrder: order,
-      });
-      setContacts([...contacts, newContact].sort((a, b) => a.priorityOrder - b.priorityOrder));
+      }, user?.uid);
+      updatedContactsList = [...contacts, newContact].sort((a, b) => a.priorityOrder - b.priorityOrder);
+    }
+
+    setContacts(updatedContactsList);
+
+    // Sync updated list to Cloud Firestore Database
+    if (user?.uid) {
+      await syncContactsToFirestore(user.uid, updatedContactsList);
     }
 
     setModalVisible(false);
@@ -100,9 +108,12 @@ export const EmergencyContactsScreen: React.FC = () => {
           text: t('common.delete'),
           style: 'destructive',
           onPress: async () => {
-            await deleteLocalContact(id);
+            await deleteLocalContact(id, user?.uid);
             const remaining = contacts.filter(c => c.id !== id);
             setContacts(remaining);
+            if (user?.uid) {
+              await syncContactsToFirestore(user.uid, remaining);
+            }
           },
         },
       ]

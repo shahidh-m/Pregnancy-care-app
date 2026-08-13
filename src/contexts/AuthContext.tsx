@@ -1,9 +1,10 @@
-// Auth context — manages user state, demo mode, profile data, dual-role (mother vs companion)
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
-import { auth } from '../services/firebase';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../services/firebase';
+import { hydrateUserDataFromFirestore, syncAllToFirestore } from '../services/firestoreSync';
 
 export type UserRole = 'mother' | 'companion';
 export type RelationshipType = 'husband' | 'mother' | 'father' | 'sister' | 'doctor' | 'friend' | 'other';
@@ -61,7 +62,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isLoading, setIsLoading] = useState(true);
   const [isOnboarded, setIsOnboarded] = useState(false);
 
-  // Load persisted auth state
+  // Sync profile document to Firestore Cloud
+  const saveProfileToFirestore = async (profile: UserProfile) => {
+    if (!profile.uid || profile.isDemo || !db) return;
+    try {
+      const userRef = doc(db, 'users', profile.uid);
+      await setDoc(userRef, {
+        ...profile,
+        updatedAt: new Date().toISOString(),
+      }, { merge: true });
+    } catch (e) {
+      console.log('Failed to push profile to Firestore:', e);
+    }
+  };
+
+  // Load persisted auth state & hydrate cloud records
   useEffect(() => {
     const load = async () => {
       try {
@@ -76,6 +91,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           }
           setUser(profile);
           setIsOnboarded(true);
+
+          // Background hydration from Firestore cloud for existing user
+          if (!profile.isDemo) {
+            hydrateUserDataFromFirestore(profile.uid);
+          }
         }
       } catch (e) {
         // no saved auth
@@ -107,19 +127,41 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       provider.setCustomParameters({ prompt: 'select_account' });
       const result = await signInWithPopup(auth, provider);
       const fbUser = result.user;
+
+      // Check if user profile already exists in Firestore
+      let existingProfile: Partial<UserProfile> = {};
+      if (db) {
+        try {
+          const userDoc = await getDoc(doc(db, 'users', fbUser.uid));
+          if (userDoc.exists()) {
+            existingProfile = userDoc.data() as UserProfile;
+          }
+        } catch (e) {
+          console.log('Firestore fetch user profile doc fallback');
+        }
+      }
+
       const googleUser: UserProfile = {
         uid: fbUser.uid,
-        name: fbUser.displayName || 'Mom',
-        email: fbUser.email || '',
-        role: 'mother',
-        dueDate: '',
-        pairingCode: generatePairingCode(),
-        language: 'en',
-        createdAt: new Date().toISOString(),
+        name: existingProfile.name || fbUser.displayName || 'Mom',
+        email: fbUser.email || existingProfile.email || '',
+        role: existingProfile.role || 'mother',
+        dueDate: existingProfile.dueDate || '',
+        pairingCode: existingProfile.pairingCode || generatePairingCode(),
+        language: existingProfile.language || 'en',
+        createdAt: existingProfile.createdAt || new Date().toISOString(),
         isDemo: false,
       };
+
       setUser(googleUser);
       await AsyncStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(googleUser));
+      await saveProfileToFirestore(googleUser);
+
+      // Hydrate all health logs, emergency contacts, checkups, reports & reminders from Firestore cloud!
+      await hydrateUserDataFromFirestore(googleUser.uid);
+      if (googleUser.dueDate) {
+        setIsOnboarded(true);
+      }
     } catch (error: any) {
       console.error('Firebase Google Auth Error:', error);
       if (Platform.OS === 'web') {
@@ -132,8 +174,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const signOut = async () => {
+    const currentUid = user?.uid;
     setUser(null);
     setIsOnboarded(false);
+    try {
+      await firebaseSignOut(auth);
+    } catch (e) {
+      // signOut error ignore
+    }
     try {
       await AsyncStorage.removeItem(PROFILE_STORAGE_KEY);
     } catch (e) {
@@ -152,6 +200,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setIsOnboarded(true);
     try {
       await AsyncStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(updatedUser));
+      await saveProfileToFirestore(updatedUser);
+      await syncAllToFirestore(updatedUser.uid);
     } catch (e) {
       // persist failed
     }
@@ -163,6 +213,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setUser(updatedUser);
     try {
       await AsyncStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(updatedUser));
+      await saveProfileToFirestore(updatedUser);
     } catch (e) {
       // persist failed
     }
@@ -182,6 +233,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setIsOnboarded(true);
     try {
       await AsyncStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(updatedUser));
+      await saveProfileToFirestore(updatedUser);
       // Save link in local storage bridge for P2P companion network demo
       await AsyncStorage.setItem('@companion_linked_mother', JSON.stringify({
         code: formattedCode,
@@ -200,4 +252,5 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     </AuthContext.Provider>
   );
 };
+
 

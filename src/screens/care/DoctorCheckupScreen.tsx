@@ -6,6 +6,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/Card';
 import { Typography, Spacing, BorderRadius } from '../../theme';
+import { useAuth } from '../../contexts/AuthContext';
 import {
   DoctorCheckupItem,
   PrimaryDoctorProfile,
@@ -18,6 +19,7 @@ import {
   savePrimaryDoctor,
   deletePrimaryDoctor,
 } from '../../services/checkupStorage';
+import { syncCheckupsToFirestore } from '../../services/firestoreSync';
 import { formatDate } from '../../utils/pregnancy';
 
 const SPECIALIST_CATEGORIES: SpecialistType[] = [
@@ -31,6 +33,7 @@ const SPECIALIST_CATEGORIES: SpecialistType[] = [
 export const DoctorCheckupScreen: React.FC = () => {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   const [checkups, setCheckups] = useState<DoctorCheckupItem[]>([]);
   const [primaryDoctors, setPrimaryDoctors] = useState<PrimaryDoctorProfile[]>([]);
@@ -62,11 +65,11 @@ export const DoctorCheckupScreen: React.FC = () => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [user?.uid]);
 
   const loadData = async () => {
-    const checkupList = await getLocalCheckups();
-    const pDocs = await getPrimaryDoctors();
+    const checkupList = await getLocalCheckups(user?.uid);
+    const pDocs = await getPrimaryDoctors(user?.uid);
     setCheckups(checkupList);
     setPrimaryDoctors(pDocs);
   };
@@ -101,7 +104,11 @@ export const DoctorCheckupScreen: React.FC = () => {
       doctorAdvice: doctorAdvice.trim() || undefined,
       prescriptions: prescriptionInput ? prescriptionInput.split(',').map(s => s.trim()) : undefined,
       nextVisitDate: nextVisitDate ? new Date(nextVisitDate).toISOString() : undefined,
-    });
+    }, user?.uid);
+
+    if (user?.uid) {
+      syncCheckupsToFirestore(user.uid);
+    }
 
     setLogModalVisible(false);
     resetCheckupForm();
@@ -135,11 +142,15 @@ export const DoctorCheckupScreen: React.FC = () => {
       hospitalName: pHospital.trim(),
       phone: pPhone.trim() || '108',
       isMainDeliveryDoctor: true,
-    });
+    }, user?.uid);
 
     if (!res.success) {
       Alert.alert('Doctor Limit Reached', res.error);
       return;
+    }
+
+    if (user?.uid) {
+      syncCheckupsToFirestore(user.uid);
     }
 
     setPrimaryModalVisible(false);
@@ -156,7 +167,10 @@ export const DoctorCheckupScreen: React.FC = () => {
         text: 'Delete',
         style: 'destructive',
         onPress: async () => {
-          await deletePrimaryDoctor(id);
+          await deletePrimaryDoctor(id, user?.uid);
+          if (user?.uid) {
+            syncCheckupsToFirestore(user.uid);
+          }
           loadData();
         },
       },
@@ -170,7 +184,10 @@ export const DoctorCheckupScreen: React.FC = () => {
         text: 'Delete',
         style: 'destructive',
         onPress: async () => {
-          await deleteDoctorCheckup(id);
+          await deleteDoctorCheckup(id, user?.uid);
+          if (user?.uid) {
+            syncCheckupsToFirestore(user.uid);
+          }
           loadData();
         },
       },

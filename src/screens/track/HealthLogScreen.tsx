@@ -53,7 +53,7 @@ export const HealthLogScreen = ({ navigation }: any) => {
         symptoms,
       };
 
-      await saveLocalHealthLog(logEntry);
+      await saveLocalHealthLog(logEntry, user?.uid);
 
       // Trigger background sync if user logged in
       if (user?.uid) {

@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal, TextInput, S
 import * as Notifications from 'expo-notifications';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../contexts/ThemeContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/Card';
 import { Typography, Spacing, BorderRadius } from '../../theme';
@@ -21,6 +22,7 @@ Notifications.setNotificationHandler({
 
 export const RemindersScreen: React.FC = () => {
   const { colors } = useTheme();
+  const { user } = useAuth();
   const { t } = useTranslation();
 
   const [reminders, setReminders] = useState<ReminderItem[]>([]);
@@ -35,7 +37,7 @@ export const RemindersScreen: React.FC = () => {
   useEffect(() => {
     loadReminders();
     checkPermissions();
-  }, []);
+  }, [user?.uid]);
 
   const checkPermissions = async () => {
     const { status } = await Notifications.getPermissionsAsync();
@@ -43,7 +45,7 @@ export const RemindersScreen: React.FC = () => {
   };
 
   const loadReminders = async () => {
-    const list = await getLocalReminders();
+    const list = await getLocalReminders(user?.uid);
     if (list.length === 0) {
       // Default sample reminders
       const defaults: ReminderItem[] = [
@@ -51,7 +53,7 @@ export const RemindersScreen: React.FC = () => {
         { id: '2', type: 'water', title: 'Hydration Break (8 glasses)', time: '11:00', recurring: true, active: true },
         { id: '3', type: 'appointment', title: 'Dr. Priya Checkup', time: '16:00', recurring: false, active: true },
       ];
-      await saveLocalReminders(defaults);
+      await saveLocalReminders(defaults, user?.uid);
       setReminders(defaults);
     } else {
       setReminders(list);
@@ -61,7 +63,7 @@ export const RemindersScreen: React.FC = () => {
   const toggleActive = async (id: string) => {
     const updated = reminders.map(r => r.id === id ? { ...r, active: !r.active } : r);
     setReminders(updated);
-    await saveLocalReminders(updated);
+    await saveLocalReminders(updated, user?.uid);
   };
 
   const handleAdd = async () => {
@@ -76,7 +78,7 @@ export const RemindersScreen: React.FC = () => {
     };
     const updated = [...reminders, newRem];
     setReminders(updated);
-    await saveLocalReminders(updated);
+    await saveLocalReminders(updated, user?.uid);
     setTitle('');
     setModalVisible(false);
   };

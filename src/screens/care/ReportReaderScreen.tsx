@@ -5,15 +5,19 @@ import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/Card';
 import { StatusBadge } from '../../components/StatusBadge';
 import { Typography, Spacing, BorderRadius } from '../../theme';
 import { analyzeReportText, ReportAnalysisResult } from '../../services/reportAnalyzer';
+import { saveLocalMedicalReport } from '../../services/storage';
+import { syncReportsToFirestore } from '../../services/firestoreSync';
 
 export const ReportReaderScreen: React.FC = () => {
   const { colors } = useTheme();
   const { language } = useLanguage();
+  const { user } = useAuth();
   const { t } = useTranslation();
 
   const [imageUri, setImageUri] = useState<string | null>(null);
@@ -61,7 +65,7 @@ export const ReportReaderScreen: React.FC = () => {
     setAnalysisResult(null);
 
     // Simulate OCR text extraction from report image
-    setTimeout(() => {
+    setTimeout(async () => {
       const simulatedOCRText = `
         PATIENT LAB REPORT
         HEMOGLOBIN: 11.2 g/dL
@@ -74,6 +78,24 @@ export const ReportReaderScreen: React.FC = () => {
       const result = analyzeReportText(simulatedOCRText, language);
       setAnalysisResult(result);
       setAnalyzing(false);
+
+      // Save report entry locally and sync to Firebase Firestore database
+      try {
+        await saveLocalMedicalReport({
+          title: 'Blood Work & Metabolic Panel',
+          category: 'Blood Test',
+          date: new Date().toISOString().split('T')[0],
+          overallSignal: result.overallSignal,
+          summary: `Extracted ${result.matchedTerms.length} test markers. Overall signal: ${result.overallSignal.toUpperCase()}`,
+          matchedTerms: result.matchedTerms,
+        }, user?.uid);
+
+        if (user?.uid) {
+          syncReportsToFirestore(user.uid);
+        }
+      } catch (e) {
+        console.log('Failed to save analyzed report:', e);
+      }
     }, 1500);
   };
 

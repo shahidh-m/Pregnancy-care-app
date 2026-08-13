@@ -1,4 +1,4 @@
-// Companion Emergency Service — Firestore real-time snapshot listener + local event bus
+// Companion Emergency Service — Firestore real-time snapshot listener + Audio Siren synthesizer
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { db } from './firebase';
@@ -17,6 +17,24 @@ export interface EmergencyAlertPayload {
   status: 'active' | 'responded' | 'resolved';
   responderName?: string;
   respondedAt?: string;
+  vitalsSummary?: {
+    bpSystolic?: number;
+    bpDiastolic?: number;
+    weightKg?: number;
+    bloodSugarMgDl?: number;
+    recentSymptoms?: string[];
+  };
+  primaryDoctor?: {
+    name: string;
+    specialty?: string;
+    hospital?: string;
+    phone: string;
+  };
+  latestReport?: {
+    title: string;
+    overallSignal: 'healthy' | 'good' | 'concerned' | 'critical';
+    keyParameters?: string;
+  };
 }
 
 const STORAGE_KEY_ACTIVE_ALERT = '@companion_active_emergency';
@@ -24,17 +42,69 @@ const STORAGE_KEY_ACTIVE_ALERT = '@companion_active_emergency';
 type AlertListener = (alert: EmergencyAlertPayload | null) => void;
 const alertListeners: Set<AlertListener> = new Set();
 
+let audioCtx: any = null;
+let sirenInterval: any = null;
+
+export const startEmergencySirenAudio = () => {
+  try {
+    triggerCompanionVibration();
+    if (typeof window !== 'undefined' && ((window as any).AudioContext || (window as any).webkitAudioContext)) {
+      const AudioCtx = (window as any).AudioContext || (window as any).webkitAudioContext;
+      if (!audioCtx) {
+        audioCtx = new AudioCtx();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      if (sirenInterval) clearInterval(sirenInterval);
+
+      let highFreq = true;
+      sirenInterval = setInterval(() => {
+        try {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(highFreq ? 880 : 660, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.35);
+          highFreq = !highFreq;
+        } catch (e) {
+          // audio play error fallback
+        }
+      }, 400);
+    }
+  } catch (e) {
+    console.log('Audio siren synth setup warning:', e);
+  }
+};
+
+export const stopEmergencySirenAudio = () => {
+  if (sirenInterval) {
+    clearInterval(sirenInterval);
+    sirenInterval = null;
+  }
+  Vibration.cancel();
+};
+
 export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertListener) => {
   alertListeners.add(callback);
 
-  // Initial check from local storage for offline P2P simulation mode
+  // Initial check from local storage
   checkLocalActiveAlert().then(localAlert => {
     if (localAlert) {
+      startEmergencySirenAudio();
       callback(localAlert);
     }
   });
 
-  // Cloud Firestore listener if connected
+  // Cloud Firestore real-time listener
   let unsubscribeFirestore = () => {};
   try {
     if (db && pairingCode) {
@@ -43,23 +113,25 @@ export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertL
         if (snapshot.exists()) {
           const data = snapshot.data() as EmergencyAlertPayload;
           if (data.status === 'active') {
-            triggerCompanionVibration();
+            startEmergencySirenAudio();
             callback(data);
           } else {
-            callback(null);
+            stopEmergencySirenAudio();
+            callback(data); // Pass updated status (e.g. responded)
           }
         } else {
+          stopEmergencySirenAudio();
           callback(null);
         }
       }, (err) => {
-        console.log('Cloud snapshot listener offline/unauthenticated fallback');
+        console.log('Cloud snapshot listener offline/fallback');
       });
     }
   } catch (e) {
     console.log('Firestore listener setup error:', e);
   }
 
-  // Periodic poll of local storage to sync offline simulation events across tabs/contexts
+  // Periodic poll of local storage to sync offline events
   const interval = setInterval(async () => {
     const alert = await checkLocalActiveAlert();
     callback(alert);
@@ -69,6 +141,7 @@ export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertL
     alertListeners.delete(callback);
     unsubscribeFirestore();
     clearInterval(interval);
+    stopEmergencySirenAudio();
   };
 };
 
@@ -77,7 +150,7 @@ export const checkLocalActiveAlert = async (): Promise<EmergencyAlertPayload | n
     const json = await AsyncStorage.getItem(STORAGE_KEY_ACTIVE_ALERT);
     if (!json) return null;
     const alert = JSON.parse(json) as EmergencyAlertPayload;
-    return alert.status === 'active' ? alert : null;
+    return alert;
   } catch (e) {
     return null;
   }
@@ -87,34 +160,54 @@ export const triggerCompanionEmergencyAlert = async (
   pairingCode: string,
   motherName: string,
   trimester: number,
-  location: { latitude: number; longitude: number } | null
+  location: { latitude: number; longitude: number } | null,
+  vitalsSummary?: EmergencyAlertPayload['vitalsSummary'],
+  primaryDoctor?: EmergencyAlertPayload['primaryDoctor'],
+  latestReport?: EmergencyAlertPayload['latestReport']
 ): Promise<EmergencyAlertPayload> => {
   const alertPayload: EmergencyAlertPayload = {
     alertId: 'alert_' + Date.now(),
     motherId: pairingCode.toUpperCase(),
     motherName,
     trimester,
-    latitude: location?.latitude ?? 12.9716, // Default fallback Chennai/Bengaluru area lat
+    latitude: location?.latitude ?? 12.9716, // Default fallback Chennai area lat
     longitude: location?.longitude ?? 80.245,
     address: 'Sholinganallur, Chennai, Tamil Nadu',
     timestamp: new Date().toISOString(),
     status: 'active',
+    vitalsSummary: vitalsSummary || {
+      bpSystolic: 120,
+      bpDiastolic: 80,
+      weightKg: 62.0,
+      recentSymptoms: ['Mild Cramps'],
+    },
+    primaryDoctor: primaryDoctor || {
+      name: 'Dr. Savitha Lakshmi',
+      specialty: 'Senior Gynecologist',
+      hospital: 'Kasturba Gandhi Hospital',
+      phone: '044-28441011',
+    },
+    latestReport: latestReport || {
+      title: 'Blood Work & Scan Panel',
+      overallSignal: 'healthy',
+      keyParameters: 'Hemoglobin: 11.2 g/dL, Sugar: 92 mg/dL',
+    },
   };
 
-  // 1. Save locally for instant offline P2P companion alert modal
+  // 1. Save locally
   await AsyncStorage.setItem(STORAGE_KEY_ACTIVE_ALERT, JSON.stringify(alertPayload));
 
-  // 2. Publish to Firestore Cloud if online
+  // 2. Publish to Firestore Cloud
   try {
     if (db) {
       const alertRef = doc(db, 'companionAlerts', pairingCode.toUpperCase());
       await setDoc(alertRef, alertPayload, { merge: true });
     }
   } catch (e) {
-    console.log('Firestore emergency trigger postponed (offline):', e);
+    console.log('Firestore emergency trigger error:', e);
   }
 
-  triggerCompanionVibration();
+  startEmergencySirenAudio();
   return alertPayload;
 };
 
@@ -137,7 +230,7 @@ export const respondToEmergencyAlert = async (alertId: string, responderName: st
         await setDoc(alertRef, updated, { merge: true });
       }
 
-      Vibration.cancel();
+      stopEmergencySirenAudio();
       return true;
     }
     return false;
@@ -146,13 +239,21 @@ export const respondToEmergencyAlert = async (alertId: string, responderName: st
   }
 };
 
-export const clearActiveEmergencyAlert = async (): Promise<void> => {
+export const clearActiveEmergencyAlert = async (pairingCode?: string): Promise<void> => {
   await AsyncStorage.removeItem(STORAGE_KEY_ACTIVE_ALERT);
-  Vibration.cancel();
+  if (db && pairingCode) {
+    try {
+      const alertRef = doc(db, 'companionAlerts', pairingCode.toUpperCase());
+      await setDoc(alertRef, { status: 'resolved' }, { merge: true });
+    } catch (e) {
+      // clear error ignore
+    }
+  }
+  stopEmergencySirenAudio();
 };
 
 export const triggerCompanionVibration = () => {
-  // Continuous emergency vibration pattern: 500ms vibrate, 300ms pause, repeat
   const PATTERN = [500, 300, 500, 300, 1000];
   Vibration.vibrate(PATTERN, true);
 };
+

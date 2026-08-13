@@ -1,8 +1,7 @@
 // Firebase configuration with active project credentials
 import { initializeApp, getApps } from 'firebase/app';
-import { initializeAuth, getAuth, getReactNativePersistence } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 
 const firebaseConfig = {
@@ -18,10 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase only once
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// Configure Auth persistence for Mobile (AsyncStorage) & Web
-export const auth = Platform.OS === 'web'
-  ? getAuth(app)
-  : (getApps().length > 1 ? getAuth(app) : initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage) }));
+// Export auth & firestore instances
+export const auth = getAuth(app);
 
 export const db = getFirestore(app);
 export default app;
