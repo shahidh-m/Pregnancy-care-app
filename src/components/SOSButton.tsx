@@ -126,8 +126,8 @@ export const SOSButton: React.FC<SOSButtonProps> = ({ contactCount, onTrigger, s
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: Spacing.xl,
-    right: Spacing.xl,
+    bottom: 78,
+    right: Spacing.lg,
     zIndex: 1000,
   },
   button: {

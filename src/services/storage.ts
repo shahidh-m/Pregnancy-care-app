@@ -148,6 +148,23 @@ export const saveLocalReminders = async (reminders: ReminderItem[], userId?: str
   await AsyncStorage.setItem(key, JSON.stringify(reminders));
 };
 
+export interface LoggedDietItem {
+  id: string;
+  slot: 'breakfast' | 'lunch' | 'snacks' | 'dinner' | 'extra';
+  name: string;
+  nameTamil?: string;
+  calories: number;
+  protein: number;
+  iron: number;
+  calcium?: number;
+  folate?: number;
+  servings: number;
+  servingUnit?: string;
+  source: 'openfoodfacts' | 'usda' | 'local_tamil_table' | 'manual';
+  loggedAt: string;
+  dateStr: string; // YYYY-MM-DD
+}
+
 // Medical Reports Storage
 export const getLocalMedicalReports = async (userId?: string): Promise<SavedMedicalReport[]> => {
   try {
@@ -183,4 +200,56 @@ export const deleteLocalMedicalReport = async (id: string, userId?: string): Pro
   const updated = reports.filter(r => r.id !== id);
   await saveLocalMedicalReports(updated, userId);
 };
+
+// Diet Logs Storage
+export const getLocalDietLogs = async (dateStr: string, userId?: string): Promise<LoggedDietItem[]> => {
+  try {
+    const key = getStorageKey(`diet_logs_${dateStr}`, userId);
+    const json = await AsyncStorage.getItem(key);
+    if (!json && userId) {
+      const legacyJson = await AsyncStorage.getItem(`@pregnancy_diet_logs_${dateStr}`);
+      return legacyJson ? JSON.parse(legacyJson) : [];
+    }
+    return json ? JSON.parse(json) : [];
+  } catch (e) {
+    console.error('Failed to fetch diet logs:', e);
+    return [];
+  }
+};
+
+export const saveLocalDietLogs = async (dateStr: string, items: LoggedDietItem[], userId?: string): Promise<void> => {
+  try {
+    const key = getStorageKey(`diet_logs_${dateStr}`, userId);
+    await AsyncStorage.setItem(key, JSON.stringify(items));
+  } catch (e) {
+    console.error('Failed to save diet logs:', e);
+  }
+};
+
+export const addLocalDietItem = async (
+  dateStr: string,
+  item: Omit<LoggedDietItem, 'id'>,
+  userId?: string
+): Promise<LoggedDietItem[]> => {
+  const currentItems = await getLocalDietLogs(dateStr, userId);
+  const newItem: LoggedDietItem = {
+    ...item,
+    id: 'diet_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+  };
+  const updated = [newItem, ...currentItems];
+  await saveLocalDietLogs(dateStr, updated, userId);
+  return updated;
+};
+
+export const deleteLocalDietItem = async (
+  dateStr: string,
+  itemId: string,
+  userId?: string
+): Promise<LoggedDietItem[]> => {
+  const currentItems = await getLocalDietLogs(dateStr, userId);
+  const updated = currentItems.filter(i => i.id !== itemId);
+  await saveLocalDietLogs(dateStr, updated, userId);
+  return updated;
+};
+
 

@@ -102,7 +102,7 @@ export const triggerEmergencySOS = async (
           bpSystolic: latestLog?.bpSystolic || 120,
           bpDiastolic: latestLog?.bpDiastolic || 80,
           weightKg: latestLog?.weight || 62.0,
-          bloodSugarMgDl: latestLog?.bloodSugar,
+          bloodSugarMgDl: latestLog?.bloodSugar || 95,
           recentSymptoms: latestLog?.symptoms || ['Emergency SOS Signal Triggered'],
         },
         mainDoctor ? {

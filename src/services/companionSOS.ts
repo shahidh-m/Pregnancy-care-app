@@ -96,11 +96,14 @@ export const stopEmergencySirenAudio = () => {
 export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertListener) => {
   alertListeners.add(callback);
 
-  // Initial check from local storage
+  // Initial check from local storage (only trigger if status is active and not expired)
   checkLocalActiveAlert().then(localAlert => {
-    if (localAlert) {
+    if (localAlert && localAlert.status === 'active') {
       startEmergencySirenAudio();
       callback(localAlert);
+    } else {
+      stopEmergencySirenAudio();
+      callback(null);
     }
   });
 
@@ -117,7 +120,7 @@ export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertL
             callback(data);
           } else {
             stopEmergencySirenAudio();
-            callback(data); // Pass updated status (e.g. responded)
+            callback(null); // Do not pop up modal for resolved/responded alerts
           }
         } else {
           stopEmergencySirenAudio();
@@ -134,8 +137,12 @@ export const subscribeToEmergencyAlerts = (pairingCode: string, callback: AlertL
   // Periodic poll of local storage to sync offline events
   const interval = setInterval(async () => {
     const alert = await checkLocalActiveAlert();
-    callback(alert);
-  }, 2000);
+    if (alert && alert.status === 'active') {
+      callback(alert);
+    } else {
+      callback(null);
+    }
+  }, 3000);
 
   return () => {
     alertListeners.delete(callback);
@@ -150,6 +157,13 @@ export const checkLocalActiveAlert = async (): Promise<EmergencyAlertPayload | n
     const json = await AsyncStorage.getItem(STORAGE_KEY_ACTIVE_ALERT);
     if (!json) return null;
     const alert = JSON.parse(json) as EmergencyAlertPayload;
+
+    // Auto-expire alerts after 15 minutes or if already responded/resolved
+    const isExpired = alert.timestamp ? (Date.now() - new Date(alert.timestamp).getTime() > 15 * 60 * 1000) : false;
+    if (alert.status !== 'active' || isExpired) {
+      await AsyncStorage.removeItem(STORAGE_KEY_ACTIVE_ALERT);
+      return null;
+    }
     return alert;
   } catch (e) {
     return null;
@@ -175,11 +189,12 @@ export const triggerCompanionEmergencyAlert = async (
     address: 'Sholinganallur, Chennai, Tamil Nadu',
     timestamp: new Date().toISOString(),
     status: 'active',
-    vitalsSummary: vitalsSummary || {
-      bpSystolic: 120,
-      bpDiastolic: 80,
-      weightKg: 62.0,
-      recentSymptoms: ['Mild Cramps'],
+    vitalsSummary: {
+      bpSystolic: vitalsSummary?.bpSystolic || 120,
+      bpDiastolic: vitalsSummary?.bpDiastolic || 80,
+      weightKg: vitalsSummary?.weightKg || 62.0,
+      bloodSugarMgDl: vitalsSummary?.bloodSugarMgDl || 95,
+      recentSymptoms: vitalsSummary?.recentSymptoms && vitalsSummary.recentSymptoms.length > 0 ? vitalsSummary.recentSymptoms : ['Emergency SOS Signal Triggered'],
     },
     primaryDoctor: primaryDoctor || {
       name: 'Dr. Savitha Lakshmi',
@@ -222,7 +237,7 @@ export const respondToEmergencyAlert = async (alertId: string, responderName: st
         responderName,
         respondedAt: new Date().toISOString(),
       };
-      await AsyncStorage.setItem(STORAGE_KEY_ACTIVE_ALERT, JSON.stringify(updated));
+      await AsyncStorage.removeItem(STORAGE_KEY_ACTIVE_ALERT);
 
       // Also publish update to Cloud Firestore
       if (db && alert.motherId) {

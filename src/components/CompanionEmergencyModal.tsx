@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Modal, TouchableOpacity, Linking, Animated, Eas
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAuth } from '../contexts/AuthContext';
-import { EmergencyAlertPayload, subscribeToEmergencyAlerts, respondToEmergencyAlert, stopEmergencySirenAudio } from '../services/companionSOS';
+import { EmergencyAlertPayload, subscribeToEmergencyAlerts, respondToEmergencyAlert, stopEmergencySirenAudio, clearActiveEmergencyAlert } from '../services/companionSOS';
 import { Typography, Spacing, BorderRadius } from '../theme';
 
 export const CompanionEmergencyModal: React.FC = () => {
@@ -68,6 +68,13 @@ export const CompanionEmergencyModal: React.FC = () => {
     await respondToEmergencyAlert(activeAlert.alertId, responderName);
     stopEmergencySirenAudio();
     setIsResponding(false);
+    setActiveAlert(null);
+  };
+
+  const handleDismiss = async () => {
+    const code = user?.connectedMotherId || user?.pairingCode || 'PREG-DEMO';
+    await clearActiveEmergencyAlert(code);
+    stopEmergencySirenAudio();
     setActiveAlert(null);
   };
 
@@ -197,18 +204,29 @@ export const CompanionEmergencyModal: React.FC = () => {
             </View>
           ) : null}
 
-          {/* Primary Action Button */}
-          {!isAlreadyResponded && (
+          {/* Primary Action Buttons */}
+          <View style={styles.actionButtonsRow}>
+            {!isAlreadyResponded && (
+              <TouchableOpacity
+                style={[styles.comingButton, isResponding && { opacity: 0.6 }]}
+                onPress={handleRespond}
+                disabled={isResponding}
+                activeOpacity={0.8}
+              >
+                <Ionicons name="checkmark-circle" size={24} color="#FFFFFF" />
+                <Text style={styles.comingBtnText}>I AM RESPONDING NOW</Text>
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity
-              style={[styles.comingButton, isResponding && { opacity: 0.6 }]}
-              onPress={handleRespond}
-              disabled={isResponding}
+              style={styles.dismissButton}
+              onPress={handleDismiss}
               activeOpacity={0.8}
             >
-              <Ionicons name="checkmark-circle" size={26} color="#FFFFFF" />
-              <Text style={styles.comingBtnText}>I AM RESPONDING NOW</Text>
+              <Ionicons name="close-circle" size={20} color="#94A3B8" />
+              <Text style={styles.dismissBtnText}>DISMISS & CLEAR ALARM CACHE</Text>
             </TouchableOpacity>
-          )}
+          </View>
         </ScrollView>
       </View>
     </Modal>
@@ -401,22 +419,42 @@ const styles = StyleSheet.create({
     color: '#CBD5E1',
     marginTop: 4,
   },
+  actionButtonsRow: {
+    gap: Spacing.sm,
+    marginTop: Spacing.sm,
+    marginBottom: Spacing.xl,
+  },
   comingButton: {
-    height: 56,
+    height: 54,
     borderRadius: BorderRadius.lg,
     backgroundColor: '#10B981',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-    marginTop: Spacing.sm,
-    marginBottom: Spacing.xl,
   },
   comingBtnText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '900',
     color: '#FFFFFF',
     letterSpacing: 1,
+  },
+  dismissButton: {
+    height: 48,
+    borderRadius: BorderRadius.lg,
+    backgroundColor: '#1E293B',
+    borderColor: '#334155',
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+  dismissBtnText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#94A3B8',
+    letterSpacing: 0.5,
   },
 });
 

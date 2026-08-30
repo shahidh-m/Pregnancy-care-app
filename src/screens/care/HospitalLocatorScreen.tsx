@@ -15,6 +15,7 @@ export const HospitalLocatorScreen: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [allHospitals, setAllHospitals] = useState<HospitalLocationInfo[]>([]);
   const [displayedHospitals, setDisplayedHospitals] = useState<HospitalLocationInfo[]>([]);
+  const [currentLocation, setCurrentLocation] = useState('Your Location');
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<'ALL' | 'MATERNITY' | 'GOVT' | 'CEmONC'>('ALL');
 
@@ -24,9 +25,12 @@ export const HospitalLocatorScreen: React.FC = () => {
 
   const loadRealtimeHospitals = async () => {
     setLoading(true);
-    const { hospitals } = await fetchNearbyHospitalsRealtime();
+    const { hospitals, locationName } = await fetchNearbyHospitalsRealtime();
     setAllHospitals(hospitals);
     setDisplayedHospitals(hospitals);
+    if (locationName) {
+      setCurrentLocation(locationName);
+    }
     setLoading(false);
   };
 
@@ -79,9 +83,9 @@ export const HospitalLocatorScreen: React.FC = () => {
 
         {/* Free API Banner Badge */}
         <View style={[styles.freeBadge, { backgroundColor: colors.success + '15' }]}>
-          <Ionicons name="earth" size={14} color={colors.success} />
+          <Ionicons name="location" size={14} color={colors.success} />
           <Text style={[styles.freeBadgeText, { color: colors.success }]}>
-            Realtime OpenStreetMap Hospital Data • 100% Free
+            Realtime Hospitals near {currentLocation}
           </Text>
         </View>
         

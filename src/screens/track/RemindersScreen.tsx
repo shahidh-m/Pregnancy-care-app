@@ -40,8 +40,13 @@ export const RemindersScreen: React.FC = () => {
   }, [user?.uid]);
 
   const checkPermissions = async () => {
-    const { status } = await Notifications.getPermissionsAsync();
-    setHasPermission(status === 'granted');
+    try {
+      const { status } = await Notifications.getPermissionsAsync();
+      setHasPermission(status === 'granted');
+    } catch (error) {
+      console.warn('Notifications permission check notice:', error);
+      setHasPermission(false);
+    }
   };
 
   const loadReminders = async () => {

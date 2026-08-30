@@ -1,8 +1,9 @@
 // Firebase configuration with active project credentials
 import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+// @ts-expect-error - getReactNativePersistence is provided in the react-native entry point of firebase/auth
+import { initializeAuth, getAuth, getReactNativePersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCNIH8E5wRl3wJNkSvXA9It4WMUo-TQ5KM",
@@ -17,9 +18,18 @@ const firebaseConfig = {
 // Initialize Firebase only once
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// Export auth & firestore instances
-export const auth = getAuth(app);
+// Export auth & firestore instances with AsyncStorage persistence for React Native
+let authInstance;
+try {
+  authInstance = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+} catch (e) {
+  authInstance = getAuth(app);
+}
 
+export const auth = authInstance;
 export const db = getFirestore(app);
 export default app;
+
 

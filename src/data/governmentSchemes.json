@@ -1,0 +1,539 @@
+[
+  {
+    "id": "mrmbs_picme",
+    "name": "Dr. Muthulakshmi Reddy Maternity Benefit Scheme (MRMBS) & PICME",
+    "nativeName": "டாக்டர் முத்துலட்சுமி ரெட்டி மகப்பேறு நிதியுதவித் திட்டம்",
+    "scope": "tamil_nadu",
+    "totalBenefit": 18000,
+    "benefitsSummary": "₹14,000 cash assistance in 5 installments + 2 Amma Nutrition Kits worth ₹4,000",
+    "benefitsSummaryTa": "5 தவணைகளில் ₹14,000 ரொக்கம் + ₹4,000 மதிப்புள்ள 2 அம்மா ஊட்டச்சத்து பெட்டகம்",
+    "overview": "Tamil Nadu flagship scheme providing financial assistance and nutritional support to poor pregnant women to compensate for wage loss and ensure healthy maternal and child outcomes.",
+    "overviewTa": "ஏழை கர்ப்பிணிப் பெண்களுக்கு ஊதிய இழப்பை ஈடுசெய்யவும் தாய்-சேய் நலனை உறுதிசெய்யவும் தமிழக அரசின் முதன்மை திட்டம்.",
+    "targetAudience": "Pregnant women in Tamil Nadu delivering in Government hospitals / PHCs, registered early in PICME portal.",
+    "targetAudienceTa": "தமிழகத்தில் அரசு மருத்துவமனைகளில் பிரசவிக்கும் மற்றும் PICME தளத்தில் பதிவு செய்த கர்ப்பிணிப் பெண்கள்.",
+    "eligibilityRules": {
+      "maxPregnancyOrder": 2,
+      "requiresBPLOrEligibleCategory": true,
+      "excludesGovtEmployees": true,
+      "requiresGovtHospitalDelivery": true
+    },
+    "requiredDocuments": [
+      {
+        "id": "doc_picme_rch",
+        "name": "PICME RCH ID Number (12 Digits)",
+        "nameTa": "PICME RCH ID எண் (12 இலக்கம்)",
+        "description": "Obtained by registering early (before 12th week) at nearest Primary Health Centre or Anganwadi.",
+        "descriptionTa": "அருகிலுள்ள ஆரம்ப சுகாதார மையம் அல்லது அங்கன்வாடியில் 12 வாரங்களுக்குள் பதிவு செய்து பெறப்படும் எண்.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_aadhaar",
+        "name": "Aadhaar Card (Mother & Husband)",
+        "nameTa": "ஆதார் கார்டு (தாய் & கணவர்)",
+        "description": "Aadhaar linked with active mobile number for DBT fund transfer.",
+        "descriptionTa": "நேரடி பண பரிமாற்றத்திற்காக மொபைல் எண்ணுடன் இணைக்கப்பட்ட ஆதார்.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_bank_passbook",
+        "name": "Mother's Bank Account Passbook",
+        "nameTa": "தாயாரின் வங்கி கணக்கு புத்தக நகல்",
+        "description": "Single bank account in mother's name with Aadhaar seeding.",
+        "descriptionTa": "ஆதாருடன் இணைக்கப்பட்ட தாயின் தனி வங்கி கணக்கு.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_mcp_card",
+        "name": "Mother and Child Protection (MCP) Card",
+        "nameTa": "தாய் சேய் பாதுகாப்பு கார்டு (MCP)",
+        "description": "Issued by Village Health Nurse (VHN) / ANM recording checkups and vaccines.",
+        "descriptionTa": "கிராம சுகாதார செவிலியரால் வழங்கப்பட்ட பரிசோதனை கார்டு.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_ration_card",
+        "name": "Smart Ration Card / Income Certificate",
+        "nameTa": "ஸ்மார்ட் ரேஷன் கார்டு / வருமான சான்றிதழ்",
+        "description": "Proof of residence and BPL/NFSA social category.",
+        "descriptionTa": "இருப்பிட மற்றும் வருமான சான்று.",
+        "isRequired": true
+      }
+    ],
+    "applyInstructions": [
+      "Visit the nearest Primary Health Centre (PHC) or Anganwadi center before 12 weeks of pregnancy.",
+      "Inform the Village Health Nurse (VHN) or Urban Health Nurse (UHN) to initiate PICME registration.",
+      "Provide Aadhaar, Bank Passbook, and Smart Ration Card copies to obtain your 12-digit RCH ID.",
+      "Ensure all 4 mandatory Antenatal Checkups (ANC) and vaccinations are logged in the PICME portal by VHN.",
+      "Funds will be directly credited (DBT) to your bank account upon completion of each milestone."
+    ],
+    "applyInstructionsTa": [
+      "கர்ப்பத்தின் 12 வாரங்களுக்குள் அருகிலுள்ள ஆரம்ப சுகாதார மையம் (PHC) அல்லது அங்கன்வாடி மையத்திற்கு செல்லவும்.",
+      "கிராம சுகாதார செவிலியரிடம் (VHN) PICME பதிவை மேற்கொள்ள விவரங்களை வழங்கவும்.",
+      "12 இலக்க RCH ID பெற ஆதார், வங்கி புத்தக நகல் மற்றும் ரேஷன் கார்டு வழங்கவும்.",
+      "அனைத்து 4 கர்ப்பகால பரிசோதனைகளையும் VHN மூலம் PICME தளத்தில் பதிவு செய்வதை உறுதி செய்யவும்.",
+      "ஒவ்வொரு இலக்கு முடிந்தவுடன் நிதி நேரடியாக உங்கள் வங்கி கணக்கில் செலுத்தப்படும்."
+    ],
+    "helplineNumber": "104",
+    "officialPortalUrl": "https://picme.tn.gov.in",
+    "milestones": [
+      {
+        "id": "mrmbs_m1",
+        "schemeId": "mrmbs_picme",
+        "weekTrigger": 12,
+        "title": "Instalment 1: Early Registration & ANC 1",
+        "titleTa": "தவணை 1: ஆரம்ப பதிவு & முதல் பரிசோதனை",
+        "description": "Complete PICME registration before 12th week of pregnancy and complete 1st Antenatal checkup.",
+        "descriptionTa": "12 வாரங்களுக்குள் PICME பதிவு செய்து முதல் மருத்துவ பரிசோதனையை முடித்தல்.",
+        "benefitAmount": 2000,
+        "benefitItems": ["₹2,000 Cash DBT", "1st Amma Magaperu Sanjeevi Kit (Nutrition & Herbal Supplement)"],
+        "requiredActions": [
+          "Register in PICME portal with VHN/Anganwadi worker",
+          "Obtain 12-digit RCH ID and MCP Card",
+          "Complete 1st ANC checkup at PHC"
+        ],
+        "requiredActionsTa": [
+          "VHN மூலம் PICME தளத்தில் பதிவு செய்து RCH ID பெறவும்",
+          "MCP பாதுகாப்பு அட்டையைப் பெறவும்",
+          "PHC-ல் முதல் கர்ப்பகால பரிசோதனையை முடிக்கவும்"
+        ],
+        "deadlineDaysOffset": 84
+      },
+      {
+        "id": "mrmbs_m2",
+        "schemeId": "mrmbs_picme",
+        "weekTrigger": 16,
+        "title": "Instalment 2: 4th Month Completion & ANC 2",
+        "titleTa": "தவணை 2: 4ம் மாதம் நிறைவு & 2ம் பரிசோதனை",
+        "description": "Eligible after completing 4th month of pregnancy and 2nd ANC checkup with blood/urine tests.",
+        "descriptionTa": "4வது மாதம் நிறைவுற்று 2வது பரிசோதனை மற்றும் ரத்த/சிறுநீர் பரிசோதனை முடித்தல்.",
+        "benefitAmount": 2000,
+        "benefitItems": ["₹2,000 Cash DBT"],
+        "requiredActions": [
+          "Complete 2nd ANC checkup at 16th week",
+          "Verify Hb level & take Td/TT injection",
+          "Ensure VHN logs progress in PICME"
+        ],
+        "requiredActionsTa": [
+          "16வது வாரத்தில் 2வது பரிசோதனையை முடிக்கவும்",
+          "ஹீமோகுளோபின் அளவு மற்றும் Td தடுப்பூசி பெறவும்",
+          "PICME தளத்தில் விவரங்கள் பதிவேற்றப்பட்டதை உறுதி செய்யவும்"
+        ],
+        "deadlineDaysOffset": 112
+      },
+      {
+        "id": "mrmbs_m3",
+        "schemeId": "mrmbs_picme",
+        "weekTrigger": 20,
+        "title": "Instalment 3: 5th Month Completion & ANC 3",
+        "titleTa": "தவணை 3: 5ம் மாதம் நிறைவு & 3ம் பரிசோதனை",
+        "description": "Eligible after completing 5th month of pregnancy and receiving 2nd Nutrition Kit.",
+        "descriptionTa": "5வது மாதம் நிறைவுற்று 2வது ஊட்டச்சத்து பெட்டகம் பெறத் தகுதி.",
+        "benefitAmount": 2000,
+        "benefitItems": ["₹2,000 Cash DBT", "2nd Amma Magaperu Sanjeevi Kit (Nutrition Supplement)"],
+        "requiredActions": [
+          "Complete 3rd ANC checkup at 20th week",
+          "Receive 2nd Nutrition Kit from PHC",
+          "Ensure scan reports are updated"
+        ],
+        "requiredActionsTa": [
+          "20வது வாரத்தில் 3வது பரிசோதனையை முடிக்கவும்",
+          "PHC-ல் 2வது ஊட்டச்சத்து பெட்டகம் பெறவும்",
+          "ஸ்கேன் அறிக்கைகளை MCP கார்டில் பதிவு செய்யவும்"
+        ],
+        "deadlineDaysOffset": 140
+      },
+      {
+        "id": "mrmbs_m4",
+        "schemeId": "mrmbs_picme",
+        "weekTrigger": 40,
+        "title": "Instalment 4: Institutional Delivery",
+        "titleTa": "தவணை 4: அரசு மருத்துவமனை பிரசவம்",
+        "description": "Credit upon delivering the baby in a Government Hospital or Primary Health Centre in Tamil Nadu.",
+        "descriptionTa": "தமிழக அரசு மருத்துவமனையில் பிரசவம் அடைந்தவுடன் வழங்கப்படும் நிதி.",
+        "benefitAmount": 4000,
+        "benefitItems": ["₹4,000 Cash DBT"],
+        "requiredActions": [
+          "Deliver at a Government Hospital / PHC",
+          "Submit delivery summary to VHN",
+          "Obtain newborn birth registration"
+        ],
+        "requiredActionsTa": [
+          "அரசு மருத்துவமனையில் பிரசவம் மேற்கொள்ளவும்",
+          "பிரசவ அறிக்கையை VHN-விடம் வழங்கவும்",
+          "குழந்தையின் பிறப்பு பதிவை பெறவும்"
+        ],
+        "deadlineDaysOffset": 280
+      },
+      {
+        "id": "mrmbs_m5",
+        "schemeId": "mrmbs_picme",
+        "weekTrigger": 52,
+        "title": "Instalment 5: Child Immunization",
+        "titleTa": "தவணை 5: குழந்தையின் தடுப்பூசி நிறைவு",
+        "description": "Credit upon completion of 3rd dose OPV, Pentavalent, and IPV vaccines for the newborn.",
+        "descriptionTa": "குழந்தைக்கு 3ம் கட்ட தடுப்பூசிகள் வெற்றிகரமாக போடப்பட்ட பின் செலுத்தப்படும் நிதி.",
+        "benefitAmount": 4000,
+        "benefitItems": ["₹4,000 Cash DBT"],
+        "requiredActions": [
+          "Complete 3rd dose OPV/Pentavalent vaccines for child",
+          "Ensure VHN enters vaccination records in PICME"
+        ],
+        "requiredActionsTa": [
+          "குழந்தைக்கான 3ம் கட்ட தடுப்பூசிகளை முடிக்கவும்",
+          "VHN மூலம் தடுப்பூசி பதிவுகளை PICME-ல் பதிவேற்றவும்"
+        ],
+        "deadlineDaysOffset": 365
+      }
+    ]
+  },
+  {
+    "id": "pmmvy",
+    "name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "nativeName": "பிரதம மந்திரி மாத்ரு வந்தனா யோஜனா",
+    "scope": "national",
+    "totalBenefit": 6000,
+    "benefitsSummary": "₹5,000 for 1st living child (2 installments); ₹6,000 for 2nd child if female",
+    "benefitsSummaryTa": "1வது குழந்தைக்கு ₹5,000; 2வது குழந்தை பெண் குழந்தையாக இருந்தால் ₹6,000",
+    "overview": "Direct Benefit Transfer (DBT) scheme under the Ministry of Women and Child Development offering wage compensation for pregnant and lactating mothers across India.",
+    "overviewTa": "இந்திய அரசால் கர்ப்பிணி பெண்களுக்கு வழங்கக்கூடும் நேரடி பண உதவித் திட்டம்.",
+    "targetAudience": "All pregnant women in India belonging to socially & economically disadvantaged sections (BPL, MGNREGA cardholders, NFSA ration card, PM-JAY, e-Shram card).",
+    "targetAudienceTa": "பொருளாதார ரீதியாக பின்தங்கிய (BPL / MGNREGA / ரேஷன் கார்டு உள்ள) இந்திய கர்ப்பிணிப் பெண்கள்.",
+    "eligibilityRules": {
+      "maxPregnancyOrder": 2,
+      "requiresSecondChildGirl": true,
+      "requiresBPLOrEligibleCategory": true,
+      "excludesGovtEmployees": true
+    },
+    "requiredDocuments": [
+      {
+        "id": "doc_pmmvy_aadhaar",
+        "name": "Aadhaar Card of Mother",
+        "nameTa": "தாயின் ஆதார் கார்டு",
+        "description": "Mandatory for DBT identification.",
+        "descriptionTa": "பணப்பரிமாற்ற அடையாளச் சான்று.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_pmmvy_mcp",
+        "name": "MCP Card (Registration details)",
+        "nameTa": "MCP கார்டு (பதிவு விவரங்கள்)",
+        "description": "Record of LMP date, ANC registration, and vaccination.",
+        "descriptionTa": "கர்ப்பகால பதிவு சான்று.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_pmmvy_bank",
+        "name": "Aadhaar-seeded Bank Account Passbook",
+        "nameTa": "ஆதாருடன் இணைக்கப்பட்ட வங்கி புத்தகம்",
+        "description": "Direct bank account passbook copy.",
+        "descriptionTa": "வங்கி கணக்கு புத்தக நகல்.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_pmmvy_eligibility_proof",
+        "name": "Eligibility Proof (BPL Ration Card / MGNREGA Job Card / PM-JAY Card)",
+        "nameTa": "தகுதி சான்று (BPL ரேஷன் கார்டு / வேலைவாய்ப்பு அட்டை)",
+        "description": "Document proving eligibility under BPL/NFSA/MGNREGA category.",
+        "descriptionTa": "சமூக-பொருளாதார தகுதி சான்று.",
+        "isRequired": true
+      }
+    ],
+    "applyInstructions": [
+      "Log in to the official PMMVY Portal (pmmvy.wcd.gov.in) using your mobile number for self-registration.",
+      "Alternatively, visit your local Anganwadi Center (AWC) or ASHA worker to apply offline.",
+      "Fill out Form 1A with your LMP date, Aadhaar details, and bank account info.",
+      "Upload/submit proof of eligibility category (Ration card / MGNREGA job card).",
+      "Upon verification by Child Development Project Officer (CDPO), funds will be credited directly."
+    ],
+    "applyInstructionsTa": [
+      "PMMVY அதிகாரப்பூர்வ இணையதளத்தில் (pmmvy.wcd.gov.in) சுயமாய் பதிவு செய்யவும்.",
+      "அல்லது உள்ளூர் அங்கன்வாடி மையம் அல்லது ஆஷா பணியாளரை தொடர்பு கொள்ளவும்.",
+      "படிவம் 1A-வில் உங்கள் விவரங்கள், ஆதார் மற்றும் வங்கி கணக்கை நிரப்பவும்.",
+      "தகுதி சான்றினை (ரேஷன் கார்டு/வேலை கார்டு) சமர்ப்பிக்கவும்.",
+      "சரிபார்ப்பிற்கு பின் நிதி நேரடியாக உங்கள் வங்கி கணக்கில் வரவு வைக்கப்படும்."
+    ],
+    "helplineNumber": "1800-11-6555",
+    "officialPortalUrl": "https://pmmvy.wcd.gov.in",
+    "milestones": [
+      {
+        "id": "pmmvy_m1",
+        "schemeId": "pmmvy",
+        "weekTrigger": 12,
+        "title": "1st Installment (1st Child): Registration & 1 ANC",
+        "titleTa": "முதல் தவணை (1வது குழந்தை): பதிவு & 1வது பரிசோதனை",
+        "description": "₹3,000 credited on early pregnancy registration and at least one ANC checkup.",
+        "descriptionTa": "கர்ப்பகால பதிவு மற்றும் ஒரு மருத்துவ பரிசோதனைக்கு பின் ₹3,000 வழங்கப்படும்.",
+        "benefitAmount": 3000,
+        "benefitItems": ["₹3,000 Cash DBT"],
+        "requiredActions": [
+          "Register pregnancy at Anganwadi / PHC within 150 days of LMP",
+          "Complete at least 1 Antenatal Checkup (ANC)",
+          "Submit PMMVY Form 1A"
+        ],
+        "requiredActionsTa": [
+          "LMP-லிருந்து 150 நாட்களுக்குள் அங்கன்வாடியில் பதிவு செய்யவும்",
+          "குறைந்தது 1 கர்ப்பகால பரிசோதனையை முடிக்கவும்",
+          "PMMVY படிவம் 1A சமர்ப்பிக்கவும்"
+        ],
+        "deadlineDaysOffset": 84
+      },
+      {
+        "id": "pmmvy_m2",
+        "schemeId": "pmmvy",
+        "weekTrigger": 40,
+        "title": "2nd Installment (1st Child): Childbirth & Vaccine Cycle 1",
+        "titleTa": "இரண்டாம் தவணை (1வது குழந்தை): பிரசவம் & முதல் கட்ட தடுப்பூசி",
+        "description": "₹2,000 credited after childbirth registration and 1st cycle of child immunizations (OPV, BCG, DPT/Pentavalent).",
+        "descriptionTa": "குழந்தை பிறப்பு பதிவு மற்றும் முதல் கட்ட தடுப்பூசிகளுக்கு பின் ₹2,000 வழங்கப்படும்.",
+        "benefitAmount": 2000,
+        "benefitItems": ["₹2,000 Cash DBT"],
+        "requiredActions": [
+          "Register child birth",
+          "Complete 1st cycle of infant immunizations (BCG, OPV, Pentavalent 1,2,3)"
+        ],
+        "requiredActionsTa": [
+          "குழந்தையின் பிறப்பை பதிவு செய்யவும்",
+          "குழந்தைக்கான முதல்கட்ட தடுப்பூசிகளை முடிக்கவும்"
+        ],
+        "deadlineDaysOffset": 280
+      },
+      {
+        "id": "pmmvy_m3",
+        "schemeId": "pmmvy",
+        "weekTrigger": 40,
+        "title": "2nd Child Bonus (Girl Child Incentive)",
+        "titleTa": "2வது குழந்தை சிறப்பு நிதி (பெண் குழந்தை ஊக்குவிப்பு)",
+        "description": "Lumpsum ₹6,000 credited upon birth registration of a 2nd living child if the baby is a girl.",
+        "descriptionTa": "இரண்டாவது குழந்தையாக பெண் குழந்தை பிறக்கும் பட்சத்தில் ₹6,000 ஒரே தவணையாக வழங்கப்படும்.",
+        "benefitAmount": 6000,
+        "benefitItems": ["₹6,000 Cash DBT (Single Installment at Birth)"],
+        "requiredActions": [
+          "Register pregnancy & birth of 2nd child (Girl)",
+          "Complete primary immunization cycle"
+        ],
+        "requiredActionsTa": [
+          "2வது பெண் બાળ குழந்தையின் பிறப்பை பதிவு செய்யவும்",
+          "தடுப்பூசி அட்டவணையை முடிக்கவும்"
+        ],
+        "deadlineDaysOffset": 280
+      }
+    ]
+  },
+  {
+    "id": "jsy",
+    "name": "Janani Suraksha Yojana (JSY)",
+    "nativeName": "ஜனனி சுரக்ஷா யோஜனா",
+    "scope": "national",
+    "totalBenefit": 1400,
+    "benefitsSummary": "Cash assistance of ₹700 (Urban) to ₹1,400 (Rural) for institutional delivery",
+    "benefitsSummaryTa": "அரசு மருத்துவமனையில் பிரசவித்தால் ₹700 முதல் ₹1,400 வரை ரொக்க உதவி",
+    "overview": "A safe motherhood intervention under the National Health Mission (NHM) promoting institutional delivery among poor pregnant women to reduce maternal and neonatal mortality.",
+    "overviewTa": "தாய் மற்றும் குழந்தை இறப்பு விகிதத்தைக் குறைக்க அரசு மருத்துவமனை பிரசவத்தை ஊக்குவிக்கும் தேசிய சுகாதாரத் திட்டம்.",
+    "targetAudience": "BPL, SC/ST pregnant women in rural & urban areas delivering in public health institutions.",
+    "targetAudienceTa": "கிராமப்புற மற்றும் நகர்ப்புற BPL, SC/ST கர்ப்பிணிப் பெண்கள்.",
+    "eligibilityRules": {
+      "requiresBPLOrEligibleCategory": true,
+      "requiresGovtHospitalDelivery": true
+    },
+    "requiredDocuments": [
+      {
+        "id": "doc_jsy_mcp",
+        "name": "MCP Card",
+        "nameTa": "MCP தாய் சேய் பாதுகாப்பு கார்டு",
+        "description": "ANC checkup records.",
+        "descriptionTa": "மருத்துவ பரிசோதனை கார்டு.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_jsy_bpl",
+        "name": "BPL Ration Card / SC ST Certificate",
+        "nameTa": "BPL ரேஷன் கார்டு / சாதி சான்றிதழ்",
+        "description": "Social category verification.",
+        "descriptionTa": "சமூக தகுதி சான்று.",
+        "isRequired": true
+      }
+    ],
+    "applyInstructions": [
+      "Inform your ASHA worker or VHN during pregnancy checkups.",
+      "Carry your MCP card and BPL/SC/ST proof at the time of admission for delivery at the Government Hospital.",
+      "Cash incentive is disbursed prior to discharge from the hospital."
+    ],
+    "applyInstructionsTa": [
+      "பிரசவ பரிசோதனைகளின் போது ஆஷா அல்லது VHN-விடம் தெரிவிக்கவும்.",
+      "பிரசவத்திற்காக அரசு மருத்துவமனையில் சேரும் போது MCP கார்டு மற்றும் சாதி/BPL சான்றிதழை எடுத்துச் செல்லவும்.",
+      "டிஸ்சார்ஜ் செய்யப்படும் முன் மருத்துவமனையிலேயே உதவித் தொகை வழங்கப்படும்."
+    ],
+    "helplineNumber": "104",
+    "officialPortalUrl": "https://nhm.gov.in",
+    "milestones": [
+      {
+        "id": "jsy_m1",
+        "schemeId": "jsy",
+        "weekTrigger": 40,
+        "title": "Institutional Delivery Incentive",
+        "titleTa": "பிரசவ நிதி உதவி",
+        "description": "Direct cash assistance paid at the hospital upon giving birth in a public health facility.",
+        "descriptionTa": "அரசு மருத்துவமனையில் பிரசவித்த உடன் வழங்கப்படும் ரொக்க உதவி.",
+        "benefitAmount": 1400,
+        "benefitItems": ["₹1,400 (Rural BPL) or ₹700 (Urban BPL) Cash Assistance"],
+        "requiredActions": [
+          "Deliver at a Primary Health Centre or Government Hospital",
+          "Present MCP Card and Bank Passbook upon admission"
+        ],
+        "requiredActionsTa": [
+          "அரசு மருத்துவமனை அல்லது PHC-ல் பிரசவம் மேற்கொள்ளவும்",
+          "சேர்க்கையின் போது MCP கார்டு மற்றும் வங்கி புத்தகத்தை வழங்கவும்"
+        ],
+        "deadlineDaysOffset": 280
+      }
+    ]
+  },
+  {
+    "id": "jssk",
+    "name": "Janani Shishu Suraksha Karyakram (JSSK)",
+    "nativeName": "ஜனனி சிசு சுரக்ஷா காரியக்ரம் (100% இலவச பிரசவம்)",
+    "scope": "national",
+    "totalBenefit": 0,
+    "benefitsSummary": "100% Free delivery, C-Section, medicines, blood, food, and free 108 ambulance transport",
+    "benefitsSummaryTa": "100% இலவச பிரசவம், சிசேரியன், மருந்துகள், ரத்தம், உணவு மற்றும் 108 ஆம்புலன்ஸ் வாகனம்",
+    "overview": "Guarantees completely free and cashless services to pregnant women and sick infants up to 1 year accessing government health institutions, eliminating out-of-pocket expenses.",
+    "overviewTa": "அரசு மருத்துவமனைகளில் கர்ப்பிணி பெண்களுக்கு முற்றிலும் இலவச மற்றும் கட்டணமில்லா சிகிச்சை அளிக்கும் உத்தரவாத திட்டம்.",
+    "targetAudience": "All pregnant women accessing public health facilities (PHC, GH, Medical College Hospitals).",
+    "targetAudienceTa": "அரசு சுகாதார நிலையங்களை அணுகும் அனைத்து கர்ப்பிணிப் பெண்களும்.",
+    "eligibilityRules": {
+      "requiresGovtHospitalDelivery": true
+    },
+    "requiredDocuments": [
+      {
+        "id": "doc_jssk_mcp",
+        "name": "MCP Card / PICME Registration",
+        "nameTa": "MCP கார்டு / PICME எண்",
+        "description": "Hospital registration.",
+        "descriptionTa": "மருத்துவமனை பதிவு அட்டை.",
+        "isRequired": true
+      }
+    ],
+    "applyInstructions": [
+      "No formal registration required — automatic entitlement upon arrival at any Government Hospital or PHC.",
+      "Call 108 for free emergency ambulance pickup from your home to the hospital.",
+      "All diagnostics, C-sections, blood transfusions, and post-delivery meals are provided at zero cost."
+    ],
+    "applyInstructionsTa": [
+      "தனியாக பதிவு செய்ய வேண்டியதில்லை — அரசு மருத்துவமனைக்குச் சென்றாலே திட்டம் தானாக பொருந்தும்.",
+      "வீட்டில் இருந்து மருத்துவமனை செல்ல 108 இலவச ஆம்புலன்ஸை அழைக்கலாம்.",
+      "அனைத்து பரிசோதனைகள், சிகிச்சைகள், ரத்தம் மற்றும் உணவு முற்றிலும் இலவசம்."
+    ],
+    "helplineNumber": "108",
+    "officialPortalUrl": "https://nhm.gov.in",
+    "milestones": [
+      {
+        "id": "jssk_m1",
+        "schemeId": "jssk",
+        "weekTrigger": 36,
+        "title": "Free Pre-Natal Diagnostics & 108 Ambulance Pickup",
+        "titleTa": "இலவச பரிசோதனைகள் & 108 ஆம்புலன்ஸ் பயணம்",
+        "description": "Zero out-of-pocket expense for ultrasound scans, lab tests, iron supplements, and emergency transport.",
+        "descriptionTa": "ஸ்கேன், ரத்த பரிசோதனைகள் மற்றும் அவசர ஆம்புலன்ஸ் பயணம் முற்றிலும் இலவசம்.",
+        "benefitAmount": 0,
+        "benefitItems": ["Free Ultrasound Scans", "Free Blood/Urine Tests", "Free 108 Transport"],
+        "requiredActions": [
+          "Schedule pre-natal visits at nearest PHC",
+          "Save 108 emergency number for labor transport"
+        ],
+        "requiredActionsTa": [
+          "அருகிலுள்ள PHC-ல் பரிசோதனைகளை திட்டமிடவும்",
+          "பிரசவ ஆம்புலன்ஸிற்கு 108 எண்ணை சேமிக்கவும்"
+        ],
+        "deadlineDaysOffset": 252
+      },
+      {
+        "id": "jssk_m2",
+        "schemeId": "jssk",
+        "weekTrigger": 40,
+        "title": "Cashless Delivery & Sick Infant Care",
+        "titleTa": "கட்டணமில்லா பிரசவம் & சிசு பராமரிப்பு",
+        "description": "100% Free normal or C-section delivery, stay, drugs, diet, and drop-back home in 102/108 vehicle.",
+        "descriptionTa": "இலவச சாதாரண அல்லது சிசேரியன் பிரசவம், இலவச உணவு மற்றும் வீடு திரும்ப இலவச வாகனம்.",
+        "benefitAmount": 0,
+        "benefitItems": ["100% Cashless Delivery & C-Section", "Free Hospital Diet", "Free Drop Back Transport"],
+        "requiredActions": [
+          "Deliver at Government Hospital / PHC",
+          "Avail free drop-back vehicle after discharge"
+        ],
+        "requiredActionsTa": [
+          "அரசு மருத்துவமனையில் பிரசவம் பெறவும்",
+          "டிஸ்சார்ஜ் பின் இலவச வீடு திரும்பும் வாகனத்தைப் பயன்படுத்தவும்"
+        ],
+        "deadlineDaysOffset": 280
+      }
+    ]
+  },
+  {
+    "id": "cmchis",
+    "name": "Chief Minister's Comprehensive Health Insurance Scheme (CMCHIS)",
+    "nativeName": "முதலமைச்சரின் விரிவான மருத்துவக் காப்பீட்டுத் திட்டம்",
+    "scope": "tamil_nadu",
+    "totalBenefit": 500000,
+    "benefitsSummary": "Up to ₹5 Lakhs per family per year coverage for complex surgeries and high-risk maternity care",
+    "benefitsSummaryTa": "ஆண்டுக்கு ₹5 லட்சம் வரை சிக்கலான மகப்பேறு மற்றும் அறுவை சிகிச்சைகளுக்கான காப்பீடு",
+    "overview": "Tamil Nadu state health insurance covering high-risk pregnancies, emergency C-sections, neonatal ICU care, and congenital surgery across empanelled public and private hospitals.",
+    "overviewTa": "உயர் ஆபத்துள்ள கர்ப்பம் மற்றும் தீவிர சிகிச்சைக்காக தமிழக அரசின் ₹5 லட்சம் மருத்துவக் காப்பீடு.",
+    "targetAudience": "Families in Tamil Nadu with annual income less than ₹1,20,000 / Smart Ration Card holders.",
+    "targetAudienceTa": "ஆண்டு வருமானம் ₹1.2 லட்சத்திற்கு குறைவான ஸ்மார்ட் ரேஷன் கார்டு வைத்திருக்கும் குடும்பங்கள்.",
+    "eligibilityRules": {
+      "requiresBPLOrEligibleCategory": true
+    },
+    "requiredDocuments": [
+      {
+        "id": "doc_cmchis_card",
+        "name": "CMCHIS Smart Card / Ration Card",
+        "nameTa": "முதலமைச்சர் காப்பீட்டு அட்டை / ரேஷன் கார்டு",
+        "description": "Health insurance card issued by TN government.",
+        "descriptionTa": "காப்பீட்டு ஸ்மார்ட் கார்டு.",
+        "isRequired": true
+      },
+      {
+        "id": "doc_cmchis_income",
+        "name": "Income Certificate (< ₹1.2 Lakhs/yr)",
+        "nameTa": "வருமான சான்றிதழ்",
+        "description": "Proof of income if card is pending.",
+        "descriptionTa": "வருமான சான்று.",
+        "isRequired": true
+      }
+    ],
+    "applyInstructions": [
+      "Present your CMCHIS Smart Card or Ration Card at the Hospital Insurance Desk (Makkal Nalavazhvu Kiosk).",
+      "The hospital liaison officer (Mitra) will obtain pre-authorization for high-risk delivery or neonatal ICU stay.",
+      "Treatment and procedures will be cashless up to ₹5,000,000."
+    ],
+    "applyInstructionsTa": [
+      "மருத்துவமனையில் உள்ள காப்பீட்டு மையத்தில் ரேஷன் கார்டு அல்லது ஸ்மார்ட் கார்டை காட்டவும்.",
+      "உயர் ஆபத்து பிரசவம் அல்லது குழந்தை தீவிர சிகிச்சைக்கு அனுமதி பெற காப்பீட்டு மித்ரா உதவுவார்.",
+      "ரூ.5 லட்சம் வரை முற்றிலும் ரொக்கமில்லா சிகிச்சை வழங்கப்படும்."
+    ],
+    "helplineNumber": "1800-425-3993",
+    "officialPortalUrl": "https://cmchistn.com",
+    "milestones": [
+      {
+        "id": "cmchis_m1",
+        "schemeId": "cmchis",
+        "weekTrigger": 28,
+        "title": "High-Risk Pregnancy Pre-Authorization",
+        "titleTa": "உயர் ஆபத்து கர்ப்ப சிகிச்சை அனுமதி",
+        "description": "Ensure CMCHIS health card is active and linked for high-risk maternity care or twin pregnancies.",
+        "descriptionTa": "சிக்கலான கர்ப்ப நோய்களுக்கு முன்-அனுமதி பெற அட்டை தயார் நிலையில் இருப்பதை உறுதி செய்யவும்.",
+        "benefitAmount": 500000,
+        "benefitItems": ["Cashless High-Risk Maternity Coverage (up to ₹5 Lakhs)"],
+        "requiredActions": [
+          "Verify CMCHIS card status online or at district e-Sevai center",
+          "Identify empanelled hospital for high-risk care"
+        ],
+        "requiredActionsTa": [
+          "இ-சேவை மையம் மூலம் காப்பீட்டு அட்டை நிலையை சரிபார்க்கவும்",
+          "அங்கீகரிக்கப்பட்ட மருத்துவமனையைக் கண்டறியவும்"
+        ],
+        "deadlineDaysOffset": 196
+      }
+    ]
+  }
+]
