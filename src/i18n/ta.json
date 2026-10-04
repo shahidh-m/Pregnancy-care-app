@@ -113,7 +113,9 @@
     "title": "பராமரிப்பு",
     "reportReader": "அறிக்கை வாசகர்",
     "hospitalLocator": "மருத்துவமனை கண்டுபிடி",
-    "schemeStatus": "திட்ட நிலை"
+    "schemeStatus": "திட்ட நிலை",
+    "vaccineTracker": "தடுப்பூசி அட்டவணை",
+    "vaccineTrackerDesc": "கர்ப்பகால கட்டாய & பரிந்துரைக்கப்பட்ட தடுப்பூசிகளை காலக்கோட்டுடன் கண்காணிக்கவும்"
   },
   "reportReader": {
     "title": "அறிக்கை வாசகர்",

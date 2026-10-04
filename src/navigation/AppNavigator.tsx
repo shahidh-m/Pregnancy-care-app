@@ -27,6 +27,7 @@ import { ReportReaderScreen } from '../screens/care/ReportReaderScreen';
 import { HospitalLocatorScreen } from '../screens/care/HospitalLocatorScreen';
 import { SchemeStatusScreen } from '../screens/care/SchemeStatusScreen';
 import { DoctorCheckupScreen } from '../screens/care/DoctorCheckupScreen';
+import { VaccineTrackerScreen } from '../screens/care/VaccineTrackerScreen';
 
 import { FamilyDashboardScreen } from '../screens/family/FamilyDashboardScreen';
 import { EmergencyContactsScreen } from '../screens/family/EmergencyContactsScreen';
@@ -66,6 +67,7 @@ const CareStack = () => (
     <Stack.Screen name="ReportReader" component={ReportReaderScreen} />
     <Stack.Screen name="HospitalLocator" component={HospitalLocatorScreen} />
     <Stack.Screen name="SchemeStatus" component={SchemeStatusScreen} />
+    <Stack.Screen name="VaccineTracker" component={VaccineTrackerScreen} />
   </Stack.Navigator>
 );
 

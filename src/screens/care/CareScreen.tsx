@@ -75,6 +75,21 @@ export const CareScreen = ({ navigation }: any) => {
             </View>
           </Card>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('VaccineTracker')} activeOpacity={0.8}>
+          <Card variant="elevated" style={styles.careCard}>
+            <View style={styles.cardRow}>
+              <View style={[styles.iconCircle, { backgroundColor: '#CCFBF1' }]}>
+                <Ionicons name="medkit-outline" size={28} color="#0D9488" />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.cardTitle, { color: colors.text }]}>{t('care.vaccineTracker')}</Text>
+                <Text style={[styles.cardSub, { color: colors.textSecondary }]}>{t('care.vaccineTrackerDesc')}</Text>
+              </View>
+              <Ionicons name="chevron-forward" size={22} color={colors.textTertiary} />
+            </View>
+          </Card>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

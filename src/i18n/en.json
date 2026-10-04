@@ -113,7 +113,9 @@
     "title": "Care",
     "reportReader": "Report Reader",
     "hospitalLocator": "Find Hospital",
-    "schemeStatus": "Scheme Status"
+    "schemeStatus": "Scheme Status",
+    "vaccineTracker": "Vaccine Schedule",
+    "vaccineTrackerDesc": "Track mandatory & recommended pregnancy vaccines with timeline"
   },
   "reportReader": {
     "title": "Report Reader",

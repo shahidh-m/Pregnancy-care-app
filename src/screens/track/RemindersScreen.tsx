@@ -1,7 +1,7 @@
 // RemindersScreen — Medicine, Water, Appointment Reminders
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal, TextInput, SafeAreaView, Switch } from 'react-native';
-import * as Notifications from 'expo-notifications';
+import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -10,15 +10,25 @@ import { Card } from '../../components/Card';
 import { Typography, Spacing, BorderRadius } from '../../theme';
 import { getLocalReminders, saveLocalReminders, ReminderItem } from '../../services/storage';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
-});
+const isExpoGo = Constants.executionEnvironment === ExecutionEnvironment.StoreClient || Constants.appOwnership === 'expo';
+
+let Notifications: typeof import('expo-notifications') | null = null;
+if (!isExpoGo) {
+  try {
+    Notifications = require('expo-notifications');
+    Notifications?.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+        shouldShowBanner: true,
+        shouldShowList: true,
+      }),
+    });
+  } catch (e) {
+    console.warn('Notification handler setup skipped in Expo Go:', e);
+  }
+}
 
 export const RemindersScreen: React.FC = () => {
   const { colors } = useTheme();
@@ -40,6 +50,10 @@ export const RemindersScreen: React.FC = () => {
   }, [user?.uid]);
 
   const checkPermissions = async () => {
+    if (isExpoGo || !Notifications) {
+      setHasPermission(true);
+      return;
+    }
     try {
       const { status } = await Notifications.getPermissionsAsync();
       setHasPermission(status === 'granted');

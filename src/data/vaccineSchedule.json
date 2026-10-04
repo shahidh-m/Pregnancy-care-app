@@ -1,0 +1,229 @@
+{
+  "vaccines": [
+    {
+      "id": "td",
+      "name": "Td (Tetanus-Diphtheria)",
+      "nameTa": "Td (டெட்டனஸ்-டிப்தீரியா) தடுப்பூசி",
+      "fullName": "Tetanus and Diphtheria Toxoid Vaccine",
+      "fullNameTa": "டெட்டனஸ் மற்றும் டிப்தீரியா நச்சுப்பொருள் தடுப்பூசி",
+      "category": "mandatory",
+      "availability": "phc_free",
+      "purpose": "Prevents maternal and neonatal tetanus and diphtheria. Protects the newborn through transfer of maternal antibodies.",
+      "purposeTa": "தாய் மற்றும் புதிதாகப் பிறந்த குழந்தையின் டெட்டனஸ் மற்றும் டிப்தீரியா நோய்களைத் தடுக்கிறது. தாயின் எதிர்ப்பு சக்தி குழந்தைக்கு மாற்றப்படும்.",
+      "importantNote": "Td has replaced the older TT (Tetanus Toxoid) vaccine in India's National Immunization Schedule. If you received 2 doses of Td/TT within the past 3 years, only 1 booster dose is needed.",
+      "importantNoteTa": "இந்தியாவின் தேசிய நோய்த்தடுப்பு அட்டவணையில் பழைய TT (டெட்டனஸ் டாக்சாய்டு) தடுப்பூசிக்குப் பதிலாக Td பயன்படுத்தப்படுகிறது. கடந்த 3 ஆண்டுகளில் 2 தவணை Td/TT பெற்றிருந்தால், ஒரே ஒரு புதுப்பிப்பு டோஸ் போதுமானது.",
+      "protectsAgainst": ["Tetanus (Lockjaw)", "Diphtheria", "Neonatal Tetanus in Newborn"],
+      "protectsAgainstTa": ["டெட்டனஸ் (தாடை பூட்டு நோய்)", "டிப்தீரியா", "புதிதாகப் பிறந்த குழந்தையின் நியோனேட்டல் டெட்டனஸ்"],
+      "sideEffects": ["Mild pain at injection site", "Low-grade fever (rare)", "Swelling at injection site (temporary)"],
+      "sideEffectsTa": ["ஊசி போடும் இடத்தில் லேசான வலி", "சிறிய காய்ச்சல் (அரிதாக)", "ஊசி இடத்தில் வீக்கம் (தற்காலிகம்)"],
+      "source": "National Immunization Schedule (NIS) / Universal Immunization Programme (UIP)",
+      "isFreeAtPHC": true,
+      "doses": [
+        {
+          "id": "td_dose_1",
+          "vaccineId": "td",
+          "doseNumber": 1,
+          "label": "Td-1: First Dose",
+          "labelTa": "Td-1: முதல் தவணை",
+          "weekStart": 4,
+          "weekEnd": 16,
+          "trimester": 1,
+          "description": "Given at the first antenatal care (ANC) visit or at the time of pregnancy registration. Should be administered as early as possible.",
+          "descriptionTa": "முதல் கர்ப்பகால பரிசோதனை (ANC) அல்லது கர்ப்ப பதிவின் போது வழங்கப்படும். கூடிய விரைவில் போட வேண்டும்."
+        },
+        {
+          "id": "td_dose_2",
+          "vaccineId": "td",
+          "doseNumber": 2,
+          "label": "Td-2: Second Dose",
+          "labelTa": "Td-2: இரண்டாம் தவணை",
+          "weekStart": 8,
+          "weekEnd": 24,
+          "trimester": 2,
+          "description": "Administered minimum 4 weeks after Td-1 dose. Ensures adequate antibody levels for both mother and newborn.",
+          "descriptionTa": "Td-1 தவணைக்கு குறைந்தது 4 வாரங்களுக்குப் பிறகு வழங்கப்படும். தாய் மற்றும் குழந்தைக்கு போதுமான எதிர்ப்பு சக்தியை உறுதி செய்கிறது.",
+          "specialCondition": "Minimum 4 weeks after Td-1",
+          "specialConditionTa": "Td-1-க்கு குறைந்தது 4 வாரங்களுக்குப் பிறகு"
+        },
+        {
+          "id": "td_booster",
+          "vaccineId": "td",
+          "doseNumber": 3,
+          "label": "Td Booster (if previously vaccinated)",
+          "labelTa": "Td புதுப்பிப்பு (ஏற்கனவே தடுப்பூசி பெற்றிருந்தால்)",
+          "weekStart": 4,
+          "weekEnd": 36,
+          "trimester": "any",
+          "description": "Only 1 booster dose is needed if the mother has received 2 doses of Td/TT within the past 3 years. Given at first ANC visit.",
+          "descriptionTa": "கடந்த 3 ஆண்டுகளில் 2 தவணை Td/TT பெற்றிருந்தால் ஒரு புதுப்பிப்பு டோஸ் மட்டுமே தேவை. முதல் ANC பரிசோதனையின் போது வழங்கப்படும்.",
+          "specialCondition": "Only if 2 doses of Td/TT received within past 3 years",
+          "specialConditionTa": "கடந்த 3 ஆண்டுகளில் 2 தவணை Td/TT பெற்றிருந்தால் மட்டுமே"
+        }
+      ]
+    },
+    {
+      "id": "tdap",
+      "name": "Tdap (Tetanus, Diphtheria, Pertussis)",
+      "nameTa": "Tdap (டெட்டனஸ், டிப்தீரியா, கக்குவான் இருமல்) தடுப்பூசி",
+      "fullName": "Tetanus, Diphtheria, and Acellular Pertussis Vaccine",
+      "fullNameTa": "டெட்டனஸ், டிப்தீரியா மற்றும் அசெல்லுலர் பெர்டுசிஸ் தடுப்பூசி",
+      "category": "recommended",
+      "availability": "private",
+      "purpose": "Protects the newborn against pertussis (whooping cough) by transferring maternal antibodies. Whooping cough can be life-threatening for infants under 3 months.",
+      "purposeTa": "தாயின் எதிர்ப்பு சக்தி மூலம் புதிதாகப் பிறந்த குழந்தையை கக்குவான் இருமல் (பெர்டுசிஸ்) நோயிலிருந்து பாதுகாக்கிறது. கக்குவான் இருமல் 3 மாதத்திற்குட்பட்ட குழந்தைகளுக்கு உயிருக்கு ஆபத்தானது.",
+      "importantNote": "Recommended by FOGSI for every pregnancy. If Tdap is administered, it can replace the Td-2 or Td Booster dose. Available primarily at private hospitals.",
+      "importantNoteTa": "FOGSI ஒவ்வொரு கர்ப்பத்திலும் பரிந்துரைக்கிறது. Tdap வழங்கப்பட்டால், அது Td-2 அல்லது Td புதுப்பிப்பு தவணையை மாற்றிக்கொள்ளலாம். முக்கியமாக தனியார் மருத்துவமனைகளில் கிடைக்கும்.",
+      "protectsAgainst": ["Tetanus", "Diphtheria", "Pertussis (Whooping Cough)"],
+      "protectsAgainstTa": ["டெட்டனஸ்", "டிப்தீரியா", "கக்குவான் இருமல் (பெர்டுசிஸ்)"],
+      "sideEffects": ["Pain and swelling at injection site", "Mild fever", "Fatigue", "Body aches (temporary)"],
+      "sideEffectsTa": ["ஊசி போடும் இடத்தில் வலி மற்றும் வீக்கம்", "லேசான காய்ச்சல்", "சோர்வு", "உடல் வலி (தற்காலிகம்)"],
+      "source": "FOGSI (Federation of Obstetric & Gynaecological Societies of India) Recommendation",
+      "isFreeAtPHC": false,
+      "doses": [
+        {
+          "id": "tdap_dose_1",
+          "vaccineId": "tdap",
+          "doseNumber": 1,
+          "label": "Tdap: Single Dose (Each Pregnancy)",
+          "labelTa": "Tdap: ஒற்றை தவணை (ஒவ்வொரு கர்ப்பமும்)",
+          "weekStart": 27,
+          "weekEnd": 36,
+          "trimester": 3,
+          "description": "Single dose recommended between 27–36 weeks of gestation (early 3rd trimester). This timing allows optimal antibody transfer to the baby before birth.",
+          "descriptionTa": "கர்ப்பத்தின் 27-36 வாரங்களுக்கு இடையில் (3ம் மூன்று மாதத்தின் தொடக்கத்தில்) ஒற்றை தவணை பரிந்துரைக்கப்படுகிறது. இந்த நேரம் பிரசவத்திற்கு முன் குழந்தைக்கு சிறந்த எதிர்ப்பு சக்தி பரிமாற்றத்தை அளிக்கிறது."
+        }
+      ]
+    },
+    {
+      "id": "influenza",
+      "name": "Influenza (Flu) Vaccine",
+      "nameTa": "இன்ஃப்ளூயன்சா (காய்ச்சல்) தடுப்பூசி",
+      "fullName": "Inactivated Influenza Vaccine (IIV)",
+      "fullNameTa": "செயலிழக்கச் செய்யப்பட்ட இன்ஃப்ளூயன்சா தடுப்பூசி (IIV)",
+      "category": "recommended",
+      "availability": "both",
+      "purpose": "Protects the mother from severe influenza complications during pregnancy. Also provides passive immunity to the infant for the first 6 months of life.",
+      "purposeTa": "கர்ப்ப காலத்தில் கடுமையான இன்ஃப்ளூயன்சா சிக்கல்களிலிருந்து தாயைப் பாதுகாக்கிறது. குழந்தைக்கும் பிறந்த முதல் 6 மாதங்களுக்கு மறைமுக பாதுகாப்பை அளிக்கிறது.",
+      "importantNote": "ONLY inactivated influenza vaccine (injection) should be used. Live attenuated nasal spray flu vaccine (LAIV) is CONTRAINDICATED during pregnancy. Seasonal — take during flu season.",
+      "importantNoteTa": "செயலிழக்கச் செய்யப்பட்ட இன்ஃப்ளூயன்சா தடுப்பூசி (ஊசி) மட்டுமே பயன்படுத்த வேண்டும். நேரடி மூக்கு வழி காய்ச்சல் தடுப்பூசி (LAIV) கர்ப்ப காலத்தில் முரண்பாடானது. பருவகால — காய்ச்சல் பருவத்தில் எடுக்க வேண்டும்.",
+      "protectsAgainst": ["Influenza (Seasonal Flu)", "Severe Flu Complications in Pregnancy", "Infant Flu Protection (first 6 months)"],
+      "protectsAgainstTa": ["இன்ஃப்ளூயன்சா (பருவகால காய்ச்சல்)", "கர்ப்ப காலத்தில் கடுமையான காய்ச்சல் சிக்கல்கள்", "குழந்தை காய்ச்சல் பாதுகாப்பு (முதல் 6 மாதம்)"],
+      "sideEffects": ["Soreness at injection site", "Low-grade fever", "Mild body aches", "Headache (temporary)"],
+      "sideEffectsTa": ["ஊசி இடத்தில் புண்", "லேசான காய்ச்சல்", "லேசான உடல்வலி", "தலைவலி (தற்காலிகம்)"],
+      "contraindications": "Do NOT take live nasal spray flu vaccine (LAIV) during pregnancy.",
+      "contraindicationsTa": "கர்ப்ப காலத்தில் நேரடி மூக்கு வழி காய்ச்சல் தடுப்பூசியை (LAIV) எடுக்கக் கூடாது.",
+      "source": "FOGSI / WHO Recommendation",
+      "isFreeAtPHC": false,
+      "doses": [
+        {
+          "id": "influenza_dose_1",
+          "vaccineId": "influenza",
+          "doseNumber": 1,
+          "label": "Flu Vaccine: Single Annual Dose",
+          "labelTa": "காய்ச்சல் தடுப்பூசி: ஆண்டு ஒற்றை தவணை",
+          "weekStart": 1,
+          "weekEnd": 40,
+          "trimester": "any",
+          "description": "Can be administered during any trimester of pregnancy. Take during flu season for best protection. Only inactivated vaccine (injection) — NOT nasal spray.",
+          "descriptionTa": "கர்ப்பத்தின் எந்த மூன்று மாதத்திலும் வழங்கலாம். சிறந்த பாதுகாப்புக்காக காய்ச்சல் பருவத்தில் எடுக்கவும். செயலிழக்கச் செய்யப்பட்ட தடுப்பூசி (ஊசி) மட்டுமே — மூக்கு வழி அல்ல."
+        }
+      ]
+    },
+    {
+      "id": "covid19",
+      "name": "COVID-19 Vaccine",
+      "nameTa": "கோவிட்-19 தடுப்பூசி",
+      "fullName": "COVID-19 Vaccine (Current Seasonal)",
+      "fullNameTa": "கோவிட்-19 தடுப்பூசி (தற்போதைய பருவகால)",
+      "category": "approved",
+      "availability": "both",
+      "purpose": "Pregnant women are at higher risk of severe COVID-19 illness, hospitalization, and preterm birth. Vaccination provides protection to both mother and newborn.",
+      "purposeTa": "கர்ப்பிணிப் பெண்களுக்கு கடுமையான கோவிட்-19 நோய், மருத்துவமனை சேர்க்கை மற்றும் குறை பிரசவ ஆபத்து அதிகம். தடுப்பூசி தாய் மற்றும் குழந்தை இருவருக்கும் பாதுகாப்பு அளிக்கிறது.",
+      "importantNote": "Government of India has approved COVID-19 vaccination for pregnant women. Consult your obstetrician for the most current recommendation based on your health history and local guidelines.",
+      "importantNoteTa": "இந்திய அரசு கர்ப்பிணிப் பெண்களுக்கான கோவிட்-19 தடுப்பூசிக்கு அனுமதி அளித்துள்ளது. உங்கள் உடல்நிலை வரலாறு மற்றும் உள்ளூர் வழிகாட்டுதல்களின் அடிப்படையில் தற்போதைய பரிந்துரைக்கு உங்கள் மகப்பேறு மருத்துவரை அணுகவும்.",
+      "protectsAgainst": ["Severe COVID-19 Illness", "COVID-related Hospitalization", "Preterm Birth Risk from COVID"],
+      "protectsAgainstTa": ["கடுமையான கோவிட்-19 நோய்", "கோவிட் தொடர்பான மருத்துவமனை சேர்க்கை", "கோவிட்டால் குறை பிரசவ ஆபத்து"],
+      "sideEffects": ["Pain at injection site", "Fatigue", "Headache", "Mild fever", "Muscle pain (temporary)"],
+      "sideEffectsTa": ["ஊசி இடத்தில் வலி", "சோர்வு", "தலைவலி", "லேசான காய்ச்சல்", "தசை வலி (தற்காலிகம்)"],
+      "source": "Government of India — Approved for Pregnant Women",
+      "isFreeAtPHC": false,
+      "doses": [
+        {
+          "id": "covid19_dose_1",
+          "vaccineId": "covid19",
+          "doseNumber": 1,
+          "label": "COVID-19: Current Seasonal Dose",
+          "labelTa": "கோவிட்-19: தற்போதைய பருவகால தவணை",
+          "weekStart": 1,
+          "weekEnd": 40,
+          "trimester": "any",
+          "description": "Can be administered at any stage of pregnancy. Consult your obstetrician for the recommended timing based on current guidelines and available vaccine formulation.",
+          "descriptionTa": "கர்ப்பத்தின் எந்த நிலையிலும் வழங்கலாம். தற்போதைய வழிகாட்டுதல்கள் மற்றும் கிடைக்கும் தடுப்பூசி வகையின் அடிப்படையில் பரிந்துரைக்கப்பட்ட நேரத்திற்கு உங்கள் மகப்பேறு மருத்துவரை அணுகவும்."
+        }
+      ]
+    }
+  ],
+  "contraindicatedVaccines": [
+    {
+      "id": "contra_mmr",
+      "name": "MMR (Measles, Mumps, Rubella)",
+      "nameTa": "MMR (தட்டம்மை, புட்டாளம்மை, ருபெல்லா)",
+      "type": "Live Vaccine",
+      "typeTa": "நேரடி தடுப்பூசி",
+      "reason": "Live vaccines are contraindicated during pregnancy. Get vaccinated before conception or after delivery.",
+      "reasonTa": "நேரடி தடுப்பூசிகள் கர்ப்ப காலத்தில் முரண்பாடானவை. கருத்தரிப்பதற்கு முன் அல்லது பிரசவத்திற்குப் பிறகு தடுப்பூசி போடவும்."
+    },
+    {
+      "id": "contra_varicella",
+      "name": "Varicella (Chickenpox)",
+      "nameTa": "வெரிசெல்லா (சின்னம்மை)",
+      "type": "Live Vaccine",
+      "typeTa": "நேரடி தடுப்பூசி",
+      "reason": "Live vaccine — contraindicated during pregnancy. Vaccinate at least 1 month before planned conception.",
+      "reasonTa": "நேரடி தடுப்பூசி — கர்ப்ப காலத்தில் முரண்பாடானது. திட்டமிட்ட கருத்தரிப்புக்கு குறைந்தது 1 மாதம் முன் தடுப்பூசி போடவும்."
+    },
+    {
+      "id": "contra_hpv",
+      "name": "HPV (Human Papillomavirus)",
+      "nameTa": "HPV (மனித பாப்பிலோமா வைரஸ்)",
+      "type": "Not Recommended in Pregnancy",
+      "typeTa": "கர்ப்ப காலத்தில் பரிந்துரைக்கப்படவில்லை",
+      "reason": "HPV vaccination should be completed before pregnancy. Not harmful if accidentally given, but remaining doses should be delayed until after delivery.",
+      "reasonTa": "HPV தடுப்பூசி கர்ப்பத்திற்கு முன் முடிக்கப்பட வேண்டும். தற்செயலாக வழங்கப்பட்டால் தீங்கு இல்லை, ஆனால் மீதமுள்ள தவணைகள் பிரசவத்திற்குப் பிறகு தள்ளிவைக்கப்பட வேண்டும்."
+    },
+    {
+      "id": "contra_bcg",
+      "name": "BCG (Tuberculosis)",
+      "nameTa": "BCG (காசநோய்)",
+      "type": "Live Vaccine",
+      "typeTa": "நேரடி தடுப்பூசி",
+      "reason": "Live bacterial vaccine — contraindicated during pregnancy.",
+      "reasonTa": "நேரடி பாக்டீரிய தடுப்பூசி — கர்ப்ப காலத்தில் முரண்பாடானது."
+    },
+    {
+      "id": "contra_laiv",
+      "name": "LAIV (Live Nasal Spray Flu Vaccine)",
+      "nameTa": "LAIV (நேரடி மூக்கு வழி காய்ச்சல் தடுப்பூசி)",
+      "type": "Live Vaccine",
+      "typeTa": "நேரடி தடுப்பூசி",
+      "reason": "Use ONLY inactivated flu vaccine (injection) during pregnancy. The live nasal spray version is NOT safe during pregnancy.",
+      "reasonTa": "கர்ப்ப காலத்தில் செயலிழக்கச் செய்யப்பட்ட காய்ச்சல் தடுப்பூசி (ஊசி) மட்டுமே பயன்படுத்தவும். நேரடி மூக்கு வழி பதிப்பு கர்ப்ப காலத்தில் பாதுகாப்பானது அல்ல."
+    }
+  ],
+  "disclaimer": {
+    "en": "⚠️ Medical Disclaimer: The vaccination schedule shown here is based on India's National Immunization Schedule (NIS), Universal Immunization Programme (UIP), and FOGSI recommendations as of 2026. This is for informational purposes only and NOT a substitute for professional medical advice. Please consult your doctor or visit your nearest Primary Health Centre (PHC / ஆரம்ப சுகாதார நிலையம்) for personalized vaccination guidance. Vaccine availability may vary by location.",
+    "ta": "⚠️ மருத்துவ பொறுப்புத் துறப்பு: இங்கு காட்டப்படும் தடுப்பூசி அட்டவணை இந்தியாவின் தேசிய நோய்த்தடுப்பு அட்டவணை (NIS), உலகளாவிய தடுப்பூசி திட்டம் (UIP) மற்றும் FOGSI பரிந்துரைகளின் அடிப்படையில் 2026 வரை புதுப்பிக்கப்பட்டது. இது தகவல் நோக்கத்திற்காக மட்டுமே, மருத்துவ ஆலோசனைக்கு மாற்றாக அல்ல. தயவுசெய்து உங்கள் மருத்துவரை அல்லது அருகிலுள்ள ஆரம்ப சுகாதார நிலையத்தை (PHC) அணுகி தனிப்பயன் தடுப்பூசி வழிகாட்டுதலைப் பெறவும். தடுப்பூசி கிடைக்கும் நிலை இடத்திற்கு இடம் மாறுபடலாம்."
+  },
+  "phcNote": {
+    "en": "🏥 Visit your nearest Primary Health Centre (PHC) — known as ஆரம்ப சுகாதார நிலையம் (Aaramba Sugaathara Nilayam) in Tamil — for FREE Td vaccination and antenatal care services. All mandatory vaccines are provided free of cost at PHCs across Tamil Nadu.",
+    "ta": "🏥 இலவச Td தடுப்பூசி மற்றும் கர்ப்பகால பரிசோதனை சேவைகளுக்கு உங்கள் அருகிலுள்ள ஆரம்ப சுகாதார நிலையத்திற்கு (PHC) செல்லவும். தமிழ்நாடு முழுவதும் உள்ள அனைத்து PHC-களிலும் கட்டாய தடுப்பூசிகள் இலவசமாக வழங்கப்படுகின்றன."
+  },
+  "lastUpdated": "2026-10-04",
+  "sources": [
+    "National Immunization Schedule (NIS), Ministry of Health & Family Welfare, Government of India",
+    "Universal Immunization Programme (UIP), Government of India",
+    "FOGSI (Federation of Obstetric & Gynaecological Societies of India)",
+    "WHO Maternal Immunization Guidelines",
+    "Tamil Nadu Directorate of Public Health & Preventive Medicine (DPH&PM)"
+  ]
+}
